@@ -1,136 +1,131 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
-class Admin extends CI_Controller {
+class Admin extends CI_Controller
+{
+    function __construct()
+    {
+        parent::__construct();
+        if (!isset($this->session->userdata['username'])) {
+            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
+											 Anda Belum Login !!!
+											</div>');
+            redirect('welcome');
+        }
+        if ($this->session->userdata['username'] != 'admin') {
+            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
+											 Anda Tidak Boleh Akses  !!!
+											</div>');
+            redirect('welcome/blocked');
+        }
+    }
 
-	public function __construct()
-	{
-		parent::__construct();
-		is_logged_in();
-	}
+    public function admin()
+    {
+        $data['user']  = $this->db->get_where('sys_users', ['username' => $this->session->userdata('username')])->row_array();
+        $data['title'] = 'Menu Admin';
+        $data['date']  = date('Y-m-d H:i:s');
 
-	public function index()
-	{
-		$data['user'] = $this->db->get_where('tbl_user', ['email' => $this->session->userdata('email')])->row_array();
-		$data['title'] = 'Dashboard' ;
-		
-		// echo "Selamat Datang User " . $data['user']['name'];
-		$this->load->view('Template/navbar', $data);
-		$this->load->view('Template/sidebar', $data);
-		$this->load->view('Admin/v_dashadmin', $data);
-		$this->load->view('Template/footer');
-	}
+        $data['data_umum']  = $this->M_pihak->get_data_admin();
+        $data['pendidikan'] = $this->M_pihak->get_data_pendidikan();
+        $data['agama']      = $this->M_pihak->get_data_agama();
+        $data['agama']      = $this->M_pihak->get_data_agama();
+        $data['id']         = $this->M_pihak->get_data_id();
+        $data['negara']     = $this->M_pihak->get_data_negara();
+        $data['query_id']   = $this->M_pihak->get_query_id();
 
-	public function role()
-	{
-		$data['user'] = $this->db->get_where('tbl_user', ['email' => $this->session->userdata('email')])->row_array();
-		$data['title'] = 'Role Management' ;
-		$data['role'] = $this->db->get('user_role')->result_array();
-		
-		
-		$this->load->view('Template/navbar', $data);
-		$this->load->view('Template/sidebar', $data);
-		$this->load->view('Admin/v_role', $data);
-		$this->load->view('Template/footer');
-	}
+        $mau_ke = $this->uri->segment(3);
+        $idu    = $this->uri->segment(4);
 
-	public function roleaccess($role_id)
-	{
-		$data['user'] = $this->db->get_where('tbl_user', ['email' => $this->session->userdata('email')])->row_array();
-		$data['title'] = 'Role Access Management' ;
-		$data['role'] = $this->db->get_where('user_role', ['id_role' => $role_id])->row_array();
+        if ($mau_ke == "view") {
+            $data['title']      = 'View Data Admin';
+            $data['page']       = 'v_view_data';
+            $data['data_umum']  = $this->db->query("SELECT * FROM pihak WHERE id = '$idu'")->result_array();
+        } elseif ($mau_ke == "edit") {
+            $data['title'] = 'Edit Data Admin';
+            $data['page']  = 'v_edit_data';
+            $data['data_umum']    = $this->db->query("SELECT * FROM pihak WHERE id = '$idu'")->result_array();
+        } else {
+            $data['page']  = 'v_beranda';
+        }
 
-		$this->db->where('id !=', 1);
-		$data['menu'] = $this->db->get('user_menu')->result_array();
-		
-		
-		$this->load->view('Template/navbar', $data);
-		$this->load->view('Template/sidebar', $data);
-		$this->load->view('Admin/v_role-access', $data);
-		$this->load->view('Template/footer');
-	}
+        $this->load->view('Temp/header', $data);
+        $this->load->view('Admin/v_dashboard', $data);
+        $this->load->view('Temp/footer');
+    }
+    public function update_data()
+    {
+        $id                = $this->input->post('id');
+        $jenis_pihak       = $this->input->post('jenis_pihak_id');
+        $jenis_kelamin     = $this->input->post('jenis_kelamin');
+        $nama              = $this->input->post('nama');
+        $jenis_indentitas  = $this->input->post('jenis_indentitas');
+        $nomor_indentitas  = $this->input->post('nomor_indentitas');
+        $tempat_lahir      = ucwords($this->input->post('tempat_lahir'));
+        $tanggal_lahir     = $this->input->post('tanggal_lahir');
+        $golongan_darah    = $this->input->post('golongan_darah');
+        $warga_negara_id   = $this->input->post('warga_negara_id');
+        $alamat            = $this->input->post('alamat');
+        $agama_id          = $this->input->post('agama_id');
+        $status_kawin      = $this->input->post('status_kawin');
+        $difabel           = $this->input->post('difabel');
+        $pendidikan_id     = $this->input->post('pendidikan_id');
+        $telpon            = $this->input->post('telpon');
+        $fax               = $this->input->post('fax');
+        $email             = $this->input->post('email');
+        $keterangan        = $this->input->post('keterangan');
+        $diinput_oleh      = $this->input->post('diinput_oleh');
+        $diinput_tanggal   = $this->input->post('diinput_tanggal');
+        $pekerjaan         = $this->input->post('pekerjaan');
+        $pekerjaan_lainnya = ucwords($this->input->post('pekerjaan_lainnya'));
+        if ($pekerjaan == 'Lain-Lain') { {
+                $pekerja = $pekerjaan_lainnya;
+            }
+        } else { {
+                $pekerja = $pekerjaan;
+            }
+        }
+        $pekerja_asli = $pekerja;
 
-	public function changeaccess()
-	{
-		$menu_id =$this->input->post('menuId');
-		$role_id =$this->input->post('roleId');
+        $data = array(
+            'id'                => $id,
+            'jenis_pihak_id'    => $jenis_pihak,
+            'jenis_indentitas'  => $jenis_indentitas,
+            'nomor_indentitas'  => $nomor_indentitas,
+            'nama'              => $nama,
+            'tempat_lahir'      => $tempat_lahir,
+            'tanggal_lahir'     => $tanggal_lahir,
+            'jenis_kelamin'     => $jenis_kelamin,
+            'golongan_darah'    => $golongan_darah,
+            'alamat'            => $alamat,
+            'telepon'           => $telpon,
+            'fax'               => $fax,
+            'email'             => $email,
+            'agama_id'          => $agama_id,
+            'status_kawin'      => $status_kawin,
+            'pekerjaan'         => $pekerja_asli,
+            'pendidikan_id'     => $pendidikan_id,
+            'warga_negara_id'   => $warga_negara_id,
+            'difabel'           => $difabel,
+            'keterangan'        => $keterangan,
+            'diinput_oleh'      => $diinput_oleh,
+            'diinput_tanggal'   => $diinput_tanggal
+        );
 
-		$data = [
-			'role_id' => $role_id,
-			'menu_id' => $menu_id
-		];
+        // var_dump($data);
+        // die;
 
-		$result = $this->db->get_where('user_access_menu', $data);
-
-		if($result->num_rows() < 1) {
-			$this->db->insert('user_access_menu', $data);
-		} else {
-			$this->db->delete('user_access_menu', $data);
-		}
-
-		$this->session->set_flashdata('pesan', 'Di Ubah');
-	}
-
-	public function tambah_role()
-	{
-		$this->form_validation->set_rules('role', 'Role', 'required');
-
-		if ($this->form_validation->run() == false) {
-
-			$this->session->set_flashdata('nama_menu', 'Nama Role Wajib Diisi !!!');
-
-			redirect('admin/role');
-
-		} else {
-
-			$role		= $this->input->post('role');
-			
-			$data = array(
-				'role'				=> $role
-				
-			);
-
-			$this->m_admin->insert_data('user_role', $data);
-
-			$this->session->set_flashdata('pesan', 'Di Tambahkan');
-			redirect('admin/role');
-		}	
-	}
-
-	public function ubah_role()
-	{
-		$this->form_validation->set_rules('role', 'Role', 'required');
-		
-
-		if ($this->form_validation->run() == FALSE) {
-
-			$this->session->set_flashdata('nama_menu', 'Nama Role Wajib Diisi !!!');
-			redirect('admin/role');
-		}else{
-
-			$id         = $this->input->post('id_role');
-			$role		= $this->input->post('role');
-			
-			$data = array(
-				'role'				=> $role
-				
-			);
-
-		$this->db->where('id_role', $id);
-        $this->db->update('user_role',$data);
+        $this->db->where('id', $id);
+        $this->db->update('pihak', $data);
         $this->session->set_flashdata('pesan', 'Di Ubah !!!');
-        redirect('admin/role');
 
-		}
-	}
+        $data_user = $this->db->get_where('sys_users', ['username' => $this->session->userdata('username')])->row_array();
+        $usernames = $data_user['username'];
 
-	public function hapus_role($id)
-	{
-		$where = array('id_role' => $id);
-		$this->m_admin->hapus_data($where, 'user_role');
-		$this->session->set_flashdata('pesan', 'Di Hapus !!!');
-		redirect('admin/role');
-
-	}
-
+        if ($usernames == 'admin') {
+            redirect('admin/admin');
+        } else {
+            redirect('user/data_umum');
+        }
+    }
 }

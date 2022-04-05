@@ -1,154 +1,88 @@
-  <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <section class="content-header">
-      <div class="container-fluid">
-        <div class="row mb-2">
-          <div class="col-sm-6">
-            <!-- <h1>Blank Page</h1> -->
-          </div>
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Laporan Rekapitulasi E-Court </li>
-            </ol>
-          </div>
-        </div>
-      </div><!-- /.container-fluid -->
-    </section>
-
-    <!-- Main content -->
-    <section class="content">
-
-      <!-- Default box -->
-      <div class="card card-info">
-        <div class="card-header">
-          <h3 class="card-title">Ecourt</h3>
-
-          <div class="card-tools">
-            <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
-              <i class="fas fa-minus"></i></button>
-            <button type="button" class="btn btn-tool" data-card-widget="remove" data-toggle="tooltip" title="Remove">
-              <i class="fas fa-times"></i></button>
-          </div>
-        </div>
-        <div class="card-body">
-          <!-- batas atas -->
-              
-              <div class="table-responsive">
-                  <table class="table table-bordered table-striped" id="example1">
-                  <thead>
-                    <tr>
-                      <th scope="col">No</th>
-                      <th scope="col">No Register</th>
-                      <th scope="col">Jenis Perkara</th>
-                      <th scope="col">Status Pendaftaran</th>
-                      <th scope="col">Jumlah Skum</th>
-                      <th scope="col">No Perkara</th>
-                      <th scope="col">Tgl Pendaftaran Perkara</th>
-                      <th scope="col">Detail</th>
-                      
-                    </tr>
-                  </thead>
-                  <tbody>
-                  <?php  
-                  $no=1;
-                  foreach ($courts as $hasil) : ?>
-                    <tr>
-                      <td><?php echo $no++  ?></td>
-                      <td><?php echo $hasil->nomor_register?></td>
-                      <td><?php echo $hasil->jenis_perkara_text?></td>
-                      <td><?php echo $hasil->status_pendaftaran_text?></td>
-                      <td><?php echo $hasil->jumlah_skum?></td>
-                      <td><?php echo $hasil->nomor_perkara?></td>
-                      <td><?php echo $hasil->tgl_pendaftaran_perkara?></td>
-                      <td>
-                        <button  data-toggle="modal" data-target="#detail-data<?=$hasil->perkara_id;?>" class="btn btn-primary btn-sm"><i class="fas fa-id-card"></i> Details</button>
-                      </td>
-                      
-                    </tr>
-                  <?php endforeach;  ?>
-                  </tbody>
-                  </table>   
-              </div>
-         <!-- batas bawah -->
-        </div>
-        <!-- /.card-body -->
-        <div class="card-footer">
-          Footer
-        </div>
-        <!-- /.card-footer-->
-      </div>
-      <!-- /.card -->
-
-    </section>
-    <!-- /.content -->
-  </div>
-  <!-- /.content-wrapper -->
-
-  
-</body>
-</html>
-<!-- Modal Details-->
-<?php foreach ($courts as $hasil) : ?>
-<div class="modal fade bd-example-modal-lg" id="detail-data<?=$hasil->perkara_id;?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header bg-info">
-        <h5><i class="fas fa-id-card"></i> Details Data Perkara E-Court</h5>
-        <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal"><i class="fas fa-window-close"></i></button>
-      </div>
-      <div class="modal-body">
-      <table class="table table-bordered">   
-        <tbody>
-          <tr>
-            <td width="150px"><strong>No Register</strong></td>
-            <td><?=$hasil->nomor_register;?></td>  
-            <td width="150px"><strong>No Perkara</strong></td>
-            <td><?=$hasil->nomor_perkara;?></td>  
-          </tr>
-          <tr>
-            <td width="150px"><strong>Tgl Pendaftaran</strong></td>
-            <td><?=$hasil->tanggal_pendaftaran;?></td>  
-            <td width="150px"><strong>Jenis Perkara</strong></td>
-            <td><?=$hasil->jenis_perkara_text;?></td>  
-          </tr>
-          <tr>
-            <td width="150px"><strong>Pihak 1</strong></td>
-            <td><?=$hasil->pihak1_text;?></td>  
-            <td width="150px"><strong>Pihak 2</strong></td>
-            <td><?=$hasil->pihak2_text;?></td>  
-          </tr>
-          <tr>
-            <td width="150px"><strong>Pengacara 1</strong></td>
-            <td><?=$hasil->pengacara_pihak1;?></td>  
-            <td width="150px"><strong>Pengacara 2</strong></td>
-            <td><?=$hasil->pengacara_pihak2;?></td>  
-          </tr>
-          <tr>
-            <td width="150px"><strong>Para Pihak</strong></td>
-            <td><?=$hasil->para_pihak;?></td>  
-             
-          </tr>
-          <tr>
-            <td width="150px"><strong>Tahapan</strong></td>
-            <td><?=$hasil->tahapan_terakhir_text;?></td>  
-            <td width="150px"><strong>Proses</strong></td>
-            <td><?=$hasil->proses_terakhir_text;?></td>  
-          </tr>
-          <tr>
-            <td width="150px"><strong>E-Mail Advocat</strong></td>
-            <td><?=$hasil->diinput_oleh;?></td>  
-            
-          </tr>
-        </tbody>
-      </table> 
-      </div>
-      <div class="modal-footer">
-       
-      </div>
-    </div>
-  </div>
-</div>
+ <!-- Main content -->
+ <div class="content">
+     <div class="flash-data" data-flashdata="<?= $this->session->flashdata('pesan') ?>"> </div>
+     <div class="container-fluid">
+         <div class="row">
+             <div class="col-lg-12">
+                 <!-- batas atas -->
+                 <div class="card">
+                     <div class="card-header">
+                         <h5 class="card-title">--Data Umum--</h5>
+                         <?php if ($user['username'] === 'admin') : ?>
+                         <?php else : ?>
+                             <div class="d-flex justify-content-end">
+                                 <a href="<?php echo base_url('user/data_umum/add') ?>" class="btn btn-primary btn-sm "><i class="fas fa-plus"></i> Tambah Data</a>
+                             </div>
+                         <?php endif; ?>
+                     </div>
+                     <div class="card-body">
+                         <table class="table table-bordered" id="example1">
+                             <thead>
+                                 <tr>
+                                     <th scope="col">No</th>
+                                     <th scope="col">ID</th>
+                                     <th scope="col">Nama</th>
+                                     <th scope="col" width="20%">TTL</th>
+                                     <th scope="col">Pekerjaan</th>
+                                     <th scope="col">Alamat</th>
+                                     <th scope="col">Aksi</th>
+                                 </tr>
+                             </thead>
+                             <tbody>
+                                 <?php
+                                    $no = 1;
+                                    foreach ($data_umum as $hasil) :
+                                    ?>
+                                     <tr>
+                                         <td width="20px"><?php echo $no++ ?></td>
+                                         <td><?php echo $hasil['id']; ?></td>
+                                         <td><?php echo $hasil['nama']; ?></td>
+                                         <td>
+                                             <?php echo $hasil['tempat_lahir']; ?>,
+                                             <?php echo tanggal_indonesia($hasil['tanggal_lahir']); ?>
+                                         </td>
+                                         <td><?php echo $hasil['pekerjaan']; ?></td>
+                                         <td><?php echo $hasil['alamat']; ?></td>
+                                         <td width="150px">
+                                             <?php if ($user['username'] === 'admin') : ?>
+                                                 <a data-toggle="modal" data-target="#hapus-data<?= $hasil['id']; ?>" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a>
+                                                 <a href="<?php echo base_url('admin/admin/edit/' . $hasil['id']) ?>" class="btn btn-success btn-sm" title="Edit Data"><i class="fas fa-edit"></i></a>
+                                                 <a href="<?php echo base_url('admin/admin/view/' . $hasil['id']) ?>" class="btn btn-primary btn-sm" title="View Data"><i class="fas fa-eye"></i></a>
+                                             <?php else : ?>
+                                                 <a href="<?php echo base_url('user/data_umum/view/' . $hasil['id']) ?>" class="btn btn-primary btn-sm" title="View Data"><i class="fas fa-eye"></i></a>
+                                                 <a href="<?php echo base_url('user/data_umum/edit/' . $hasil['id']) ?>" class="btn btn-success btn-sm" title="Edit Data"><i class="fas fa-edit"></i></a>
+                                             <?php endif; ?>
+                                         </td>
+                                     </tr>
+                                 <?php endforeach; ?>
+                             </tbody>
+                         </table>
+                     </div>
+                 </div>
+                 <!-- batas bawah -->
+             </div>
+         </div>
+         <!-- /.row -->
+     </div><!-- /.container-fluid -->
+ </div>
+ <!-- /.content -->
+ <?php foreach ($data_umum as $hasil) : ?>
+     <div class="modal fade" id="hapus-data<?= $hasil['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+         <div class="modal-dialog" role="document">
+             <div class="modal-content">
+                 <div class="modal-header bg-danger">
+                     <h5><i class="fas fa-trash"></i> Hapus Data Pihak</h5>
+                 </div>
+                 <form class="form-horizontal" action="<?php echo site_url('user/hapus_data/' . $hasil['id']); ?>" method="post" enctype="multipart/form-data" role="form">
+                     <div class="modal-body">
+                         <p>Apakah Anda Ingin Menghapus Data <strong><?= $hasil['nama']; ?></strong> ?</p>
+                     </div>
+                     <div class="modal-footer justify-content-between">
+                         <button class="btn btn-danger btn-lg" type="submit"><i class="fas fa-trash"></i></button>
+                         <button type="button" class="btn btn-success btn-lg" data-dismiss="modal"><i class="fas fa-window-close"></i></button>
+                     </div>
+                 </form>
+             </div>
+         </div>
+     </div>
  <?php endforeach;  ?>
-<!-- Modal -->
