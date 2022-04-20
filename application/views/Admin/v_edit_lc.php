@@ -28,6 +28,14 @@
                                                      <input type="hidden" name="id_datalc" value="<?= $hasil['id_datalc']; ?>">
                                                  </div>
                                                  <div class="form-group col-md-6">
+                                                     <label for="tgl_permohonan">Tgl Daftar</label>
+                                                     <input type="date" name="tgl_permohonan" class="form-control form-control-sm" value="<?= $hasil['tgl_permohonan']; ?>" required>
+                                                 </div>
+                                                 <div class="form-group col-md-6">
+                                                     <label for="nomor_ac">No Akta Cerai</label>
+                                                     <input type="text" name="nomor_ac" class="form-control form-control-sm" value="<?= $hasil['nomor_ac']; ?>" required>
+                                                 </div>
+                                                 <div class="form-group col-md-6">
                                                      <label for="tgl_ac">Tanggal Akta Cerai</label>
                                                      <input type="date" name="tgl_ac" class="form-control form-control-sm" value="<?= $hasil['tgl_ac']; ?>" required>
                                                  </div>
@@ -38,6 +46,25 @@
                                                  <div class="form-group col-md-6">
                                                      <label for="no_perkara">Nomor Perkara</label>
                                                      <input type="text" name="no_perkaraname" class="form-control form-control-sm" value="<?= $hasil['no_perkara']; ?>" readonly>
+                                                 </div>
+                                                 <div class="form-group col-md-6">
+                                                     <label for="input_resi">Input Resi</label>
+                                                     <input type="text" name="input_resi" class="form-control form-control-sm" value="<?= $hasil['input_resi']; ?>" required>
+                                                 </div>
+                                                 <div class="form-group col-md-6">
+                                                    <strong> File : </strong>
+                                                    <?php if ($hasil['file_upload'] === '') : ?>
+                                                        Tidak Ada File
+                                                    <?php else : ?>
+                                                        <a href="<?php echo base_url() . 'uploads/' . $hasil['file_upload']; ?>" target="_blank">
+                                                            Lihat File
+                                                        </a>
+                                                    <?php endif; ?>
+                                                    <br>
+                                                    <label for="image">File Upload</label>
+                                                    <div class="custom-file">
+                                                        <input type="file" name="image"  id="image">
+                                                    </div>
                                                  </div>
                                                  <div class="form-group col-md-6">
                                                      <label for="nama_p">Nama Penggugat / Pemohon</label>
