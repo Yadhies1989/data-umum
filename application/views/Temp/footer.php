@@ -110,7 +110,7 @@
          Swal.fire({
              icon: 'success',
              title: 'Matoh',
-             text: 'Surat Masuk Berhasil ' + flashData,
+             text: 'Data Umum Berhasil ' + flashData,
          });
      }
      window.onload = function() {
@@ -162,6 +162,8 @@
                  },
              });
          });
+
+
      }
  </script>
  </body>
