@@ -48,13 +48,13 @@
                                                      <label for="input_resi">Input Resi</label>
                                                      <input type="text" name="input_resi" class="form-control form-control-sm" placeholder="Input No Resi">
                                                  </div>
-                                                 <div class="form-group col-md-6">
+                                                 <!-- <div class="form-group col-md-6">
                                                      <label for="file_upload">File Upload</label>
                                                      <div class="custom-file">
                                                          <input type="file" name="file_upload" class="custom-file-input form-control-sm" id="file_upload">
                                                          <label class="custom-file-label col-form-label-sm" for="image">File Upload</label>
                                                      </div>
-                                                 </div>
+                                                 </div> -->
                                              </div>
                                          </div>
                                      </div>
