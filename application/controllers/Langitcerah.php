@@ -111,7 +111,7 @@ class Langitcerah extends CI_Controller
         $pendidikan_t       = $this->input->post('pendidikan_t');
         $alamat_t           = $this->input->post('alamat_t');
         $telepon_t          = $this->input->post('telepon_t');
-        $input_resi         = $this->input->post('input_resi');
+        $input_resi         = $this->input->post('input_resi') != NULL ? $this->input->post('input_resi') : 0;
         $file_upload        = 'default.pdf';
         $created            = date('Y-m-d H:i:s');
 
@@ -156,12 +156,14 @@ class Langitcerah extends CI_Controller
     }
     public function update_data()
     {
+        
         $id_datalc          = $this->input->post('id_datalc');
         $tgl_kirim_ac       = $this->input->post('tgl_kirim_ac');
         $nomor_lc           = $this->input->post('nomor_lc');
-        $tgl_permohonan     = date('Y-m-d');
+        $tgl_permohonan     = $this->input->post('tgl_permohonan');
         $tgl_ac             = $this->input->post('tgl_ac');
         $no_perkara         = $this->input->post('no_perkaraname');
+        $input_resi         = $this->input->post('input_resi');
         $nama_p             = $this->input->post('nama_p');
         $umur_p             = $this->input->post('umur_p');
         $agama_p            = $this->input->post('agama_p');
@@ -178,6 +180,34 @@ class Langitcerah extends CI_Controller
         $telepon_t          = $this->input->post('telepon_t');
         $created            = date('Y-m-d H:i:s');
 
+        $db2 = $this->load->database('database_kedua', TRUE);
+        $data['user']      = $db2->get_where('tb_datalc', ['id_datalc' => $id_datalc])->row_array();
+
+        //cek jika ada gambar yang akan di upload
+			$upload_image = $_FILES['image']['name'];
+
+			if ($upload_image) {
+				$config['allowed_types'] 	= 'pdf';
+				$config['max_size']     	= '2048';
+				$config['upload_path']     	= './uploads';
+
+				$this->load->library('upload', $config);
+
+				if ($this->upload->do_upload('image')) {
+					$old_image = $data['user']['file_upload'];
+					if ($old_image != 'default.pdf') {
+						unlink(FCPATH . "uploads/" . $old_image);
+					}
+
+					$new_image = $this->upload->data('file_name');
+					$db2->set('file_upload', $new_image);
+				} else {
+					// echo $this->upload->display_errors();
+					$this->session->set_flashdata('nama_menu', 'Tipe File Tidak Support Atau File Terlalu Besar !!!');
+					//redirect('user/edit');
+				}
+			}
+
 
         $data = array(
             'id_datalc'      => $id_datalc,
@@ -186,6 +216,7 @@ class Langitcerah extends CI_Controller
             'tgl_permohonan' => $tgl_permohonan,
             'tgl_ac'         => $tgl_ac,
             'no_perkara'     => $no_perkara,
+            'input_resi'     => $input_resi,   
             'nama_p'         => $nama_p,
             'umur_p'         => $umur_p,
             'agama_p'        => $agama_p,
@@ -201,11 +232,9 @@ class Langitcerah extends CI_Controller
             'alamat_t'       => $alamat_t,
             'telepon_t'      => $telepon_t,
             'created'        => $created
-
-
         );
 
-        $db2 = $this->load->database('database_kedua', TRUE);
+        
 
         $db2->where('id_datalc', $id_datalc);
         $db2->update('tb_datalc', $data);
