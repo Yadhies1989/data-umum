@@ -25,42 +25,52 @@
                                              <td><?= $hasil['nomor_lc']; ?></td>
                                          </tr>
                                          <tr>
-                                             <th scope="col">Tgl Permohonan / Tgl Kirim AC</th>
+                                             <th scope="col">Tgl Daftar</th>
                                              <th>:</th>
-                                             <td><?= tanggal_indonesia($hasil['tgl_permohonan']); ?> / <?= tanggal_indonesia($hasil['tgl_kirim_ac']); ?></td>
+                                             <td><?= tanggal_indonesia($hasil['tgl_kirim_ac']); ?></td>
                                          </tr>
                                          <tr>
-                                             <th scope="col">Nama P</th>
+                                             <th scope="col">Tgl Kirim AC</th>
+                                             <th>:</th>
+                                             <td><?= tanggal_indonesia($hasil['tgl_kirim_ac']); ?></td>
+                                         </tr>
+                                         <tr>
+                                             <th scope="col">Nomor Resi</th>
+                                             <th>:</th>
+                                             <td><?= $hasil['input_resi']; ?></td>
+                                         </tr>
+                                         <tr>
+                                             <th scope="col">Nama Penggugat</th>
                                              <th>:</th>
                                              <td><?= $hasil['nama_p']; ?></td>
                                          </tr>
                                          <tr>
-                                             <th scope="col">Umur P</th>
+                                             <th scope="col">Umur Penggugat</th>
                                              <th>:</th>
                                              <td><?= $hasil['umur_p']; ?></td>
                                          </tr>
                                          <tr>
-                                             <th scope="col">Agama P</th>
+                                             <th scope="col">Agama Penggugat</th>
                                              <th>:</th>
                                              <td><?= $hasil['agama_p']; ?></td>
                                          </tr>
                                          <tr>
-                                             <th scope="col">Pekerjaan P</th>
+                                             <th scope="col">Pekerjaan Penggugat</th>
                                              <th>:</th>
                                              <td><?= $hasil['pekerjaan_p']; ?></td>
                                          </tr>
                                          <tr>
-                                             <th scope="col">Pendidikan P</th>
+                                             <th scope="col">Pendidikan Penggugat</th>
                                              <th>:</th>
                                              <td><?= $hasil['pendidikan_p']; ?></td>
                                          </tr>
                                          <tr>
-                                             <th scope="col">Alamat P</th>
+                                             <th scope="col">Alamat Penggugat</th>
                                              <th>:</th>
                                              <td><?= $hasil['alamat_p']; ?></td>
                                          </tr>
                                          <tr>
-                                             <th scope="col">Telepon P</th>
+                                             <th scope="col">Telepon Penggugat</th>
                                              <th>:</th>
                                              <td><?= $hasil['telepon_p']; ?></td>
                                          </tr>
@@ -76,42 +86,56 @@
                                              <td><?= $hasil['no_perkara']; ?></td>
                                          </tr>
                                          <tr>
-                                             <th scope="col">Tanggal AC</th>
+                                             <th scope="col">Nomor AC</th>
                                              <th>:</th>
-                                             <td><?= $hasil['tgl_ac']; ?></td>
+                                             <td><?= $hasil['nomor_ac']; ?></td>
                                          </tr>
                                          <tr>
-                                             <th scope="col">Nama T</th>
+                                             <th scope="col">Tanggal AC</th>
+                                             <th>:</th>
+                                             <td><?= tanggal_indonesia($hasil['tgl_ac']); ?></td>
+                                         </tr>
+                                         <tr>
+                                             <th scope="col">File Upload</th>
+                                             <th>:</th>
+                                             <td>
+                                                 <a href="<?php echo base_url() . 'uploads/' . $hasil['file_upload']; ?>" target="_blank">
+                                                     <?= $hasil['file_upload']; ?>
+                                                 </a>
+                                             </td>
+                                         </tr>
+                                         <tr>
+                                             <th scope="col">Nama Tergugat</th>
                                              <th>:</th>
                                              <td><?= $hasil['nama_t']; ?></td>
                                          </tr>
                                          <tr>
-                                             <th scope="col">Umur T</th>
+                                             <th scope="col">Umur Tergugat</th>
                                              <th>:</th>
                                              <td><?= $hasil['umur_t']; ?></td>
                                          </tr>
                                          <tr>
-                                             <th scope="col">Agama T</th>
+                                             <th scope="col">Agama Tergugat</th>
                                              <th>:</th>
                                              <td><?= $hasil['agama_t']; ?></td>
                                          </tr>
                                          <tr>
-                                             <th scope="col">Pekerjaan T</th>
+                                             <th scope="col">Pekerjaan Tergugat</th>
                                              <th>:</th>
                                              <td><?= $hasil['pekerjaan_t']; ?></td>
                                          </tr>
                                          <tr>
-                                             <th scope="col">Pendidikan T</th>
+                                             <th scope="col">Pendidikan Tergugat</th>
                                              <th>:</th>
                                              <td><?= $hasil['pendidikan_t']; ?></td>
                                          </tr>
                                          <tr>
-                                             <th scope="col">Alamat T</th>
+                                             <th scope="col">Alamat Tergugat</th>
                                              <th>:</th>
                                              <td><?= $hasil['alamat_t']; ?></td>
                                          </tr>
                                          <tr>
-                                             <th scope="col">Telepon T</th>
+                                             <th scope="col">Telepon Tergugat</th>
                                              <th>:</th>
                                              <td><?= $hasil['telepon_t']; ?></td>
                                          </tr>

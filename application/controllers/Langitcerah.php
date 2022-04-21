@@ -156,7 +156,7 @@ class Langitcerah extends CI_Controller
     }
     public function update_data()
     {
-        
+
         $id_datalc          = $this->input->post('id_datalc');
         $tgl_kirim_ac       = $this->input->post('tgl_kirim_ac');
         $nomor_lc           = $this->input->post('nomor_lc');
@@ -184,29 +184,29 @@ class Langitcerah extends CI_Controller
         $data['user']      = $db2->get_where('tb_datalc', ['id_datalc' => $id_datalc])->row_array();
 
         //cek jika ada gambar yang akan di upload
-			$upload_image = $_FILES['image']['name'];
+        $upload_image = $_FILES['image']['name'];
 
-			if ($upload_image) {
-				$config['allowed_types'] 	= 'pdf';
-				$config['max_size']     	= '2048';
-				$config['upload_path']     	= './uploads';
+        if ($upload_image) {
+            $config['allowed_types']     = 'pdf';
+            $config['max_size']         = '2048';
+            $config['upload_path']         = './uploads';
 
-				$this->load->library('upload', $config);
+            $this->load->library('upload', $config);
 
-				if ($this->upload->do_upload('image')) {
-					$old_image = $data['user']['file_upload'];
-					if ($old_image != 'default.pdf') {
-						unlink(FCPATH . "uploads/" . $old_image);
-					}
+            if ($this->upload->do_upload('image')) {
+                $old_image = $data['user']['file_upload'];
+                if ($old_image != 'default.pdf') {
+                    unlink(FCPATH . "uploads/" . $old_image);
+                }
 
-					$new_image = $this->upload->data('file_name');
-					$db2->set('file_upload', $new_image);
-				} else {
-					// echo $this->upload->display_errors();
-					$this->session->set_flashdata('nama_menu', 'Tipe File Tidak Support Atau File Terlalu Besar !!!');
-					//redirect('user/edit');
-				}
-			}
+                $new_image = $this->upload->data('file_name');
+                $db2->set('file_upload', $new_image);
+            } else {
+                // echo $this->upload->display_errors();
+                $this->session->set_flashdata('nama_menu', 'Tipe File Tidak Support Atau File Terlalu Besar !!!');
+                //redirect('user/edit');
+            }
+        }
 
 
         $data = array(
@@ -216,7 +216,7 @@ class Langitcerah extends CI_Controller
             'tgl_permohonan' => $tgl_permohonan,
             'tgl_ac'         => $tgl_ac,
             'no_perkara'     => $no_perkara,
-            'input_resi'     => $input_resi,   
+            'input_resi'     => $input_resi,
             'nama_p'         => $nama_p,
             'umur_p'         => $umur_p,
             'agama_p'        => $agama_p,
@@ -234,7 +234,7 @@ class Langitcerah extends CI_Controller
             'created'        => $created
         );
 
-        
+
 
         $db2->where('id_datalc', $id_datalc);
         $db2->update('tb_datalc', $data);
@@ -248,8 +248,17 @@ class Langitcerah extends CI_Controller
     }
     public function hapus_data($id)
     {
+        //load db kedua
+        $db2 = $this->load->database('database_kedua', TRUE);
+        # hapus file
+        $row = $db2->where('id_datalc', $id)->get('tb_datalc')->row_array();
+        $old_image = $row['file_upload'];
+
+        unlink(FCPATH . "uploads/" . $old_image);
+
         $where = array('id_datalc' => $id);
         $this->M_pihak->hapus_lc($where, 'tb_datalc');
+
         $this->session->set_flashdata('pesan', 'DiHapus !!!');
         redirect('langitcerah/data_lc');
     }

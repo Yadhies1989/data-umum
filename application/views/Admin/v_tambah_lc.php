@@ -46,7 +46,7 @@
                                                  </div>
                                                  <div class="form-group col-md-6">
                                                      <label for="input_resi">Input Resi</label>
-                                                     <input type="text" name="input_resi" class="form-control form-control-sm" placeholder="Input No Resi">
+                                                     <input type="text" name="input_resi" class="form-control form-control-sm" placeholder="Input No Resi / Kosongkan Kalo Ga Ada">
                                                  </div>
                                                  <!-- <div class="form-group col-md-6">
                                                      <label for="file_upload">File Upload</label>
