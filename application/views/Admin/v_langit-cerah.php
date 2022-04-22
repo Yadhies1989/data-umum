@@ -1,6 +1,8 @@
  <!-- Main content -->
  <div class="content">
      <div class="flash-data" data-flashdata="<?= $this->session->flashdata('pesan') ?>"> </div>
+     <div class="nama-menu" data-namamenu="<?php echo $this->session->flashdata('nama_menu')  ?>"></div>
+
      <div class="container-fluid">
          <div class="row">
              <div class="col-lg-12">

@@ -56,7 +56,16 @@
              text: 'Permohonan Langit Cerah Berhasil ' + flashData,
          });
      }
+     const namaMenu = $('.nama-menu').data('namamenu');
+     // console.log(namaLengkap);
 
+     if (namaMenu) {
+         Swal.fire({
+             icon: 'warning',
+             title: 'Cek Kembali',
+             text: namaMenu,
+         });
+     }
      $(document).ready(function() {
          // Format Select2 pada id nisn
          $("#no_perkaraid").select2({

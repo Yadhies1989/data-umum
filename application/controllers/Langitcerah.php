@@ -187,9 +187,11 @@ class Langitcerah extends CI_Controller
         $upload_image = $_FILES['image']['name'];
 
         if ($upload_image) {
-            $config['allowed_types']     = 'pdf';
+            $config['allowed_types']    = 'pdf';
             $config['max_size']         = '2048';
-            $config['upload_path']         = './uploads';
+            $config['upload_path']      = './uploads';
+            $filename                   = str_replace('/', '_', $nomor_lc);
+            $config['file_name']        = $filename;
 
             $this->load->library('upload', $config);
 
@@ -204,7 +206,7 @@ class Langitcerah extends CI_Controller
             } else {
                 // echo $this->upload->display_errors();
                 $this->session->set_flashdata('nama_menu', 'Tipe File Tidak Support Atau File Terlalu Besar !!!');
-                //redirect('user/edit');
+                redirect('langitcerah/data_lc');
             }
         }
 
