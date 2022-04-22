@@ -210,6 +210,33 @@ class Langitcerah extends CI_Controller
             }
         }
 
+        //cek jika ada gambar yang akan di upload
+        $upload_image_kw = $_FILES['image_kw']['name'];
+
+        if ($upload_image_kw) {
+            $config['allowed_types']    = 'pdf';
+            $config['max_size']         = '2048';
+            $config['upload_path']      = './uploads';
+            $filename                   = str_replace('/', '_', $nomor_lc);
+            $config['file_name']        = $filename;
+
+            $this->load->library('upload', $config);
+
+            if ($this->upload->do_upload('image_kw')) {
+                $old_image = $data['user']['file_kwitansi'];
+                if ($old_image != 'default.pdf') {
+                    unlink(FCPATH . "uploads/" . $old_image);
+                }
+
+                $new_image = $this->upload->data('file_name');
+                $db2->set('file_kwitansi', $new_image);
+            } else {
+                // echo $this->upload->display_errors();
+                $this->session->set_flashdata('nama_menu', 'Tipe File Tidak Support Atau File Terlalu Besar !!!');
+                redirect('langitcerah/data_lc');
+            }
+        }
+
 
         $data = array(
             'id_datalc'      => $id_datalc,
