@@ -52,34 +52,38 @@
                                                      <input type="text" name="input_resi" class="form-control form-control-sm" value="<?= $hasil['input_resi']; ?>" required>
                                                  </div>
                                                  <div class="form-group col-md-6">
-                                                    <strong> File : </strong>
-                                                    <?php if ($hasil['file_upload'] === '') : ?>
-                                                        Tidak Ada File
-                                                    <?php else : ?>
-                                                        <a href="<?php echo base_url() . 'uploads/' . $hasil['file_upload']; ?>" target="_blank">
-                                                            Lihat File
-                                                        </a>
-                                                    <?php endif; ?>
-                                                    <br>
-                                                    <label for="image">File Upload</label>
-                                                    <div class="custom-file">
-                                                        <input type="file" name="image"  id="image">
-                                                    </div>
-                                                 </div>
-                                                 <div class="form-group col-md-6">
-                                                    <strong> File : </strong>
-                                                    <?php if ($hasil['file_kwitansi'] === '') : ?>
-                                                        Tidak Ada File
-                                                    <?php else : ?>
-                                                        <a href="<?php echo base_url() . 'uploads/' . $hasil['file_kwitansi']; ?>" target="_blank">
-                                                            Lihat File
-                                                        </a>
-                                                    <?php endif; ?>
-                                                    <br>
-                                                    <label for="image_kw">File Kwitansi</label>
-                                                    <div class="custom-file">
-                                                        <input type="file" name="image_kw"  id="image_kw">
-                                                    </div>
+                                                     <div class="form-row">
+                                                         <div class="form-group col-md-6">
+                                                             <strong> File : </strong>
+                                                             <?php if ($hasil['file_upload'] === '') : ?>
+                                                                 Tidak Ada File
+                                                             <?php else : ?>
+                                                                 <a href="<?php echo base_url() . 'uploads/' . $hasil['file_upload']; ?>" target="_blank">
+                                                                     Lihat File
+                                                                 </a>
+                                                             <?php endif; ?>
+                                                             <br>
+                                                             <label for="image">File Upload</label>
+                                                             <div class="custom-file">
+                                                                 <input type="file" name="image" id="image">
+                                                             </div>
+                                                         </div>
+                                                         <div class="form-group col-md-6">
+                                                             <strong> File : </strong>
+                                                             <?php if ($hasil['file_kwitansi'] === '') : ?>
+                                                                 Tidak Ada File
+                                                             <?php else : ?>
+                                                                 <a href="<?php echo base_url() . 'uploads/' . $hasil['file_kwitansi']; ?>" target="_blank">
+                                                                     Lihat File
+                                                                 </a>
+                                                             <?php endif; ?>
+                                                             <br>
+                                                             <label for="image_kw">File Kwitansi</label>
+                                                             <div class="custom-file">
+                                                                 <input type="file" name="image_kw" id="image_kw">
+                                                             </div>
+                                                         </div>
+                                                     </div>
                                                  </div>
                                                  <div class="form-group col-md-6">
                                                      <label for="nama_p">Nama Penggugat / Pemohon</label>

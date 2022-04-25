@@ -190,7 +190,7 @@ class Langitcerah extends CI_Controller
             $config['allowed_types']    = 'pdf';
             $config['max_size']         = '2048';
             $config['upload_path']      = './uploads';
-            $filename                   = str_replace('/', '_', $nomor_lc);
+            $filename                   = str_replace('/', '_', $nomor_lc . '_foto');
             $config['file_name']        = $filename;
 
             $this->load->library('upload', $config);
@@ -217,7 +217,7 @@ class Langitcerah extends CI_Controller
             $config['allowed_types']    = 'pdf';
             $config['max_size']         = '2048';
             $config['upload_path']      = './uploads';
-            $filename                   = str_replace('/', '_', $nomor_lc);
+            $filename                   = str_replace('/', '_', $nomor_lc . '_kwitansi');
             $config['file_name']        = $filename;
 
             $this->load->library('upload', $config);
