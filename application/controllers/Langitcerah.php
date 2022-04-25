@@ -154,6 +154,90 @@ class Langitcerah extends CI_Controller
         // die;
 
     }
+    public function update_file_upload()
+    {
+        $id_datalc          = $this->input->post('id_datalc');
+        $nomor_lc           = $this->input->post('nomor_lc');
+        $db2 = $this->load->database('database_kedua', TRUE);
+        $data['user']      = $db2->get_where('tb_datalc', ['id_datalc' => $id_datalc])->row_array();
+        
+        //cek jika ada gambar yang akan di upload
+        $upload_image = $_FILES['image']['name'];
+
+        if ($upload_image) {
+            $config['allowed_types']    = 'pdf';
+            $config['max_size']         = '2048';
+            $config['upload_path']      = './uploads';
+            $filename                   = str_replace('/', '_', $nomor_lc . '_foto');
+            $config['file_name']        = $filename;
+
+            $this->load->library('upload', $config);
+
+            if ($this->upload->do_upload('image')) {
+                $old_image = $data['user']['file_upload'];
+                if ($old_image != 'default.pdf') {
+                    unlink(FCPATH . "uploads/" . $old_image);
+                }
+
+                $new_image = $this->upload->data('file_name');
+                $db2->set('file_upload', $new_image);
+            } else {
+                // echo $this->upload->display_errors();
+                $this->session->set_flashdata('nama_menu', 'Tipe File Tidak Support Atau File Terlalu Besar !!!');
+                redirect('langitcerah/data_lc');
+            }
+        }
+
+        $db2->where('id_datalc', $id_datalc);
+        $db2->update('tb_datalc');
+
+        $this->session->set_flashdata('pesan', 'Di Ubah');
+        redirect('langitcerah/data_lc/edit/'.$id_datalc);
+
+    }
+
+    public function update_file_kwitansi()
+    {
+        $id_datalc          = $this->input->post('id_datalc');
+        $nomor_lc           = $this->input->post('nomor_lc');
+        $db2 = $this->load->database('database_kedua', TRUE);
+        $data['user']      = $db2->get_where('tb_datalc', ['id_datalc' => $id_datalc])->row_array();
+        
+        //cek jika ada gambar yang akan di upload
+        $upload_image_kw = $_FILES['image_kw']['name'];
+
+        if ($upload_image_kw) {
+            $config['allowed_types']    = 'pdf';
+            $config['max_size']         = '2048';
+            $config['upload_path']      = './uploads';
+            $filename                   = str_replace('/', '_', $nomor_lc . '_kwitansi');
+            $config['file_name']        = $filename;
+
+            $this->load->library('upload', $config);
+
+            if ($this->upload->do_upload('image_kw')) {
+                $old_image = $data['user']['file_kwitansi'];
+                if ($old_image != 'default.pdf') {
+                    unlink(FCPATH . "uploads/" . $old_image);
+                }
+
+                $new_image = $this->upload->data('file_name');
+                $db2->set('file_kwitansi', $new_image);
+            } else {
+                // echo $this->upload->display_errors();
+                $this->session->set_flashdata('nama_menu', 'Tipe File Tidak Support Atau File Terlalu Besar !!!');
+                redirect('langitcerah/data_lc');
+            }
+        }
+
+        $db2->where('id_datalc', $id_datalc);
+        $db2->update('tb_datalc');
+
+        $this->session->set_flashdata('pesan', 'Di Ubah');
+        redirect('langitcerah/data_lc/edit/'.$id_datalc);
+
+    }
+
     public function update_data()
     {
 
@@ -184,58 +268,58 @@ class Langitcerah extends CI_Controller
         $data['user']      = $db2->get_where('tb_datalc', ['id_datalc' => $id_datalc])->row_array();
 
         //cek jika ada gambar yang akan di upload
-        $upload_image = $_FILES['image']['name'];
+        // $upload_image = $_FILES['image']['name'];
 
-        if ($upload_image) {
-            $config['allowed_types']    = 'pdf';
-            $config['max_size']         = '2048';
-            $config['upload_path']      = './uploads';
-            $filename                   = str_replace('/', '_', $nomor_lc . '_foto');
-            $config['file_name']        = $filename;
+        // if ($upload_image) {
+        //     $config['allowed_types']    = 'pdf';
+        //     $config['max_size']         = '2048';
+        //     $config['upload_path']      = './uploads';
+        //     $filename                   = str_replace('/', '_', $nomor_lc . '_foto');
+        //     $config['file_name']        = $filename;
 
-            $this->load->library('upload', $config);
+        //     $this->load->library('upload', $config);
 
-            if ($this->upload->do_upload('image')) {
-                $old_image = $data['user']['file_upload'];
-                if ($old_image != 'default.pdf') {
-                    unlink(FCPATH . "uploads/" . $old_image);
-                }
+        //     if ($this->upload->do_upload('image')) {
+        //         $old_image = $data['user']['file_upload'];
+        //         if ($old_image != 'default.pdf') {
+        //             unlink(FCPATH . "uploads/" . $old_image);
+        //         }
 
-                $new_image = $this->upload->data('file_name');
-                $db2->set('file_upload', $new_image);
-            } else {
-                // echo $this->upload->display_errors();
-                $this->session->set_flashdata('nama_menu', 'Tipe File Tidak Support Atau File Terlalu Besar !!!');
-                redirect('langitcerah/data_lc');
-            }
-        }
+        //         $new_image = $this->upload->data('file_name');
+        //         $db2->set('file_upload', $new_image);
+        //     } else {
+        //         // echo $this->upload->display_errors();
+        //         $this->session->set_flashdata('nama_menu', 'Tipe File Tidak Support Atau File Terlalu Besar !!!');
+        //         redirect('langitcerah/data_lc');
+        //     }
+        // }
 
         //cek jika ada gambar yang akan di upload
-        $upload_image_kw = $_FILES['image_kw']['name'];
+        // $upload_image_kw = $_FILES['image_kw']['name'];
 
-        if ($upload_image_kw) {
-            $config['allowed_types']    = 'pdf';
-            $config['max_size']         = '2048';
-            $config['upload_path']      = './uploads';
-            $filename                   = str_replace('/', '_', $nomor_lc . '_kwitansi');
-            $config['file_name']        = $filename;
+        // if ($upload_image_kw) {
+        //     $config['allowed_types']    = 'pdf';
+        //     $config['max_size']         = '2048';
+        //     $config['upload_path']      = './uploads';
+        //     $filename                   = str_replace('/', '_', $nomor_lc . '_kwitansi');
+        //     $config['file_name']        = $filename;
 
-            $this->load->library('upload', $config);
+        //     $this->load->library('upload', $config);
 
-            if ($this->upload->do_upload('image_kw')) {
-                $old_image = $data['user']['file_kwitansi'];
-                if ($old_image != 'default.pdf') {
-                    unlink(FCPATH . "uploads/" . $old_image);
-                }
+        //     if ($this->upload->do_upload('image_kw')) {
+        //         $old_image = $data['user']['file_kwitansi'];
+        //         if ($old_image != 'default.pdf') {
+        //             unlink(FCPATH . "uploads/" . $old_image);
+        //         }
 
-                $new_image = $this->upload->data('file_name');
-                $db2->set('file_kwitansi', $new_image);
-            } else {
-                // echo $this->upload->display_errors();
-                $this->session->set_flashdata('nama_menu', 'Tipe File Tidak Support Atau File Terlalu Besar !!!');
-                redirect('langitcerah/data_lc');
-            }
-        }
+        //         $new_image = $this->upload->data('file_name');
+        //         $db2->set('file_kwitansi', $new_image);
+        //     } else {
+        //         // echo $this->upload->display_errors();
+        //         $this->session->set_flashdata('nama_menu', 'Tipe File Tidak Support Atau File Terlalu Besar !!!');
+        //         redirect('langitcerah/data_lc');
+        //     }
+        // }
 
 
         $data = array(
