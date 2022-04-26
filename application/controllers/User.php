@@ -16,12 +16,6 @@ class User extends CI_Controller
 											</div>');
 			redirect('welcome');
 		}
-		if ($this->session->userdata['username'] === 'admin') {
-			$this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
-											 Anda Tidak Boleh Akses  !!!
-											</div>');
-			redirect('welcome/blocked');
-		}
 	}
 	public function data_umum()
 	{

@@ -73,8 +73,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 <li><a href="<?php echo base_url('audit/verstek_tidak') ?>" class="dropdown-item">Verstek Tidak</a></li>
                             </ul>
                         </li>
-                        <li class="nav-item">
-                            <a href="<?php echo base_url('langitcerah/data_lc') ?>" class="nav-link active"><i class="fas fa-calendar"></i> Langit Cerah</a>
+                        <li class="nav-item dropdown">
+                            <a id="dropdownSubMenu2" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link active dropdown-toggle"><i class="fas fa-calendar"></i> Langit Cerah</a>
+                            <ul aria-labelledby="dropdownSubMenu2" class="dropdown-menu border-0 shadow">
+                                <li><a href="<?php echo base_url('langitcerah/data_lc') ?>" class="dropdown-item">Data Langit Cerah</a></li>
+                                <li><a href="<?php echo base_url('#') ?>" class="dropdown-item">Laporan</a></li>
+                            </ul>
                         </li>
                     </ul>
                 </div>

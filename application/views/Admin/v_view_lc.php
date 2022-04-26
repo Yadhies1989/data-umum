@@ -20,7 +20,7 @@
                                  <table class="table table-bordered table-sm">
                                      <tbody>
                                          <tr>
-                                             <th scope="col">Nomor Langit Cerah</th>
+                                             <th scope="col" style="width: 30%;">Nomor Langit Cerah</th>
                                              <th>:</th>
                                              <td><?= $hasil['nomor_lc']; ?></td>
                                          </tr>
@@ -81,7 +81,7 @@
                                  <table class="table table-bordered table-sm">
                                      <tbody>
                                          <tr>
-                                             <th scope="col">Nomor Perkara</th>
+                                             <th scope="col" style="width: 30%;">Nomor Perkara</th>
                                              <th>:</th>
                                              <td><?= $hasil['no_perkara']; ?></td>
                                          </tr>

@@ -28,7 +28,6 @@
                                              <th scope="col">Tgl Kirim</th>
                                              <th scope="col">Nama P</th>
                                              <th scope="col">Input Resi</th>
-                                             <!-- <th scope="col">File Upload</th> -->
                                              <th scope="col">Unduhan</th>
                                              <th scope="col">Aksi</th>
                                          </tr>
@@ -48,8 +47,9 @@
                                                  <td><?php echo $hasil['nama_p']; ?></td>
                                                  <td><?php echo $hasil['input_resi']; ?></td>
                                                  <td width="150px">
-                                                     <a href="<?php echo base_url('langitcerah/print_rtf/' . $hasil['id_datalc']) ?>" class="btn btn-warning btn-sm" title="Print Permohonan LC"><i class="fas fa-print"></i></a>
-                                                     <a data-toggle="modal" data-target="#update-data<?= $hasil['id_datalc']; ?>" class="btn btn-success btn-sm"><i class="fas fa-download"></i></a>
+                                                     <a href="<?php echo base_url('langitcerah/print_rtf/' . $hasil['id_datalc']) ?>" class="btn btn-danger btn-sm" title="Print Permohonan LC"><i class="fas fa-print"></i></a>
+                                                     <a data-toggle="modal" data-target="#update-data<?= $hasil['id_datalc']; ?>" class="btn btn-warning btn-sm"><i class="fas fa-download"></i></a>
+                                                     <a data-toggle="modal" data-target="#kwitansi-data<?= $hasil['id_datalc']; ?>" class="btn btn-success btn-sm"><i class="fas fa-download"></i></a>
                                                  </td>
                                                  <td width="150px">
                                                      <a data-toggle="modal" data-target="#hapus-data<?= $hasil['id_datalc']; ?>" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a>
@@ -102,6 +102,21 @@
                  <div class="modal-body">
                      <div class="d-flex justify-content-center">
                          <embed type="application/pdf" src="<?php echo base_url('uploads/') . $hasil['file_upload']; ?>" width="450" height="400"></embed>
+                     </div>
+                 </div>
+             </div>
+         </div>
+     </div>
+ <?php endforeach;  ?>
+ <!-- Modal -->
+ <!-- Modal Update-->
+ <?php foreach ($data_lc as $hasil) : ?>
+     <div class="modal fade" id="kwitansi-data<?= $hasil['id_datalc']; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+         <div class="modal-dialog" role="document">
+             <div class="modal-content">
+                 <div class="modal-body">
+                     <div class="d-flex justify-content-center">
+                         <embed type="application/pdf" src="<?php echo base_url('uploads/') . $hasil['file_kwitansi']; ?>" width="450" height="400"></embed>
                      </div>
                  </div>
              </div>

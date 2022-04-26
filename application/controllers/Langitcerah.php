@@ -8,6 +8,12 @@ class Langitcerah extends CI_Controller
     {
         parent::__construct();
         $this->load->library('form_validation');
+        if (!isset($this->session->userdata['username'])) {
+            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
+											 Anda Belum Login !!!
+											</div>');
+            redirect('welcome');
+        }
     }
 
     public function data_lc()
@@ -113,6 +119,7 @@ class Langitcerah extends CI_Controller
         $telepon_t          = $this->input->post('telepon_t');
         $input_resi         = $this->input->post('input_resi') != NULL ? $this->input->post('input_resi') : 0;
         $file_upload        = 'default.pdf';
+        $file_kwitansi      = 'default.pdf';
         $created            = date('Y-m-d H:i:s');
 
 
@@ -139,6 +146,7 @@ class Langitcerah extends CI_Controller
             'telepon_t'      => $telepon_t,
             'input_resi'     => $input_resi,
             'file_upload'    => $file_upload,
+            'file_kwitansi'  => $file_kwitansi,
             'created'        => $created
 
 
@@ -160,7 +168,7 @@ class Langitcerah extends CI_Controller
         $nomor_lc           = $this->input->post('nomor_lc');
         $db2 = $this->load->database('database_kedua', TRUE);
         $data['user']      = $db2->get_where('tb_datalc', ['id_datalc' => $id_datalc])->row_array();
-        
+
         //cek jika ada gambar yang akan di upload
         $upload_image = $_FILES['image']['name'];
 
@@ -181,6 +189,9 @@ class Langitcerah extends CI_Controller
 
                 $new_image = $this->upload->data('file_name');
                 $db2->set('file_upload', $new_image);
+
+                $this->session->set_flashdata('pesan', 'Di Upload');
+                redirect('langitcerah/data_lc');
             } else {
                 // echo $this->upload->display_errors();
                 $this->session->set_flashdata('nama_menu', 'Tipe File Tidak Support Atau File Terlalu Besar !!!');
@@ -192,8 +203,7 @@ class Langitcerah extends CI_Controller
         $db2->update('tb_datalc');
 
         $this->session->set_flashdata('pesan', 'Di Ubah');
-        redirect('langitcerah/data_lc/edit/'.$id_datalc);
-
+        redirect('langitcerah/data_lc/edit/' . $id_datalc);
     }
 
     public function update_file_kwitansi()
@@ -202,7 +212,7 @@ class Langitcerah extends CI_Controller
         $nomor_lc           = $this->input->post('nomor_lc');
         $db2 = $this->load->database('database_kedua', TRUE);
         $data['user']      = $db2->get_where('tb_datalc', ['id_datalc' => $id_datalc])->row_array();
-        
+
         //cek jika ada gambar yang akan di upload
         $upload_image_kw = $_FILES['image_kw']['name'];
 
@@ -223,6 +233,9 @@ class Langitcerah extends CI_Controller
 
                 $new_image = $this->upload->data('file_name');
                 $db2->set('file_kwitansi', $new_image);
+
+                $this->session->set_flashdata('pesan', 'Di Upload');
+                redirect('langitcerah/data_lc');
             } else {
                 // echo $this->upload->display_errors();
                 $this->session->set_flashdata('nama_menu', 'Tipe File Tidak Support Atau File Terlalu Besar !!!');
@@ -234,8 +247,7 @@ class Langitcerah extends CI_Controller
         $db2->update('tb_datalc');
 
         $this->session->set_flashdata('pesan', 'Di Ubah');
-        redirect('langitcerah/data_lc/edit/'.$id_datalc);
-
+        redirect('langitcerah/data_lc/edit/' . $id_datalc);
     }
 
     public function update_data()
@@ -366,8 +378,14 @@ class Langitcerah extends CI_Controller
         # hapus file
         $row = $db2->where('id_datalc', $id)->get('tb_datalc')->row_array();
         $old_image = $row['file_upload'];
+        $old_kw    = $row['file_kwitansi'];
 
-        unlink(FCPATH . "uploads/" . $old_image);
+        if ($old_image != 'default.pdf') {
+            unlink(FCPATH . "uploads/" . $old_image);
+        }
+        if ($old_kw != 'default.pdf') {
+            unlink(FCPATH . "uploads/" . $old_kw);
+        }
 
         $where = array('id_datalc' => $id);
         $this->M_pihak->hapus_lc($where, 'tb_datalc');

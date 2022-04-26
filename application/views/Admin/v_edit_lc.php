@@ -4,7 +4,7 @@
          <div class="row">
              <div class="col-lg-12">
                  <!-- batas atas file upload-->
-             <div class="card">
+                 <div class="card">
                      <form id="form-file" method="POST" action="<?php echo base_url('langitcerah/update_file_upload/') ?>" enctype="multipart/form-data">
                          <div class="card-header">
                              <h5 class="card-title m-0">--Form Upload File--</h5>
@@ -13,7 +13,7 @@
                              <?php endforeach;  ?>
                              <div class="card-tools">
                                  <button type="submit" class="btn btn-success btn-sm active" role="button" aria-pressed="true"><i class="fas fa-save"></i> Simpan</button>
-                                 <!-- <a href="<?php echo base_url('langitcerah/data_lc') ?>" class="btn btn-danger btn-sm active" role="button" aria-pressed="true"><i class="fas fa-backward"></i> Kembali</a> -->
+                                 <a href="<?php echo base_url('langitcerah/data_lc') ?>" class="btn btn-danger btn-sm active" role="button" aria-pressed="true"><i class="fas fa-backward"></i> Kembali</a>
                              </div>
                          </div>
                          <div class="card-body">
@@ -22,23 +22,23 @@
                                      <div class="card">
                                          <div class="card-body">
                                              <div class="form-row">
-                                                <div class="form-group col-md-6">
-                                                    <strong> File : </strong>
-                                                    <?php if ($hasil['file_upload'] === '') : ?>
-                                                        Tidak Ada File
-                                                    <?php else : ?>
-                                                        <a href="<?php echo base_url() . 'uploads/' . $hasil['file_upload']; ?>" target="_blank">
-                                                            Lihat File
-                                                        </a>
-                                                    <?php endif; ?>
-                                                    <br>
-                                                    <label for="image">File Upload</label>
-                                                    <div class="custom-file">
-                                                        <input type="file" name="image" id="image" onchange="hideformkwitansi(this.value);">
-                                                        <input type="hidden" name="id_datalc" value="<?= $hasil['id_datalc']; ?>">
-                                                        <input type="hidden" name="nomor_lc" value="<?= $hasil['nomor_lc']; ?>" >
-                                                    </div>
-                                                </div>
+                                                 <div class="form-group col-md-6">
+                                                     <strong> File : </strong>
+                                                     <?php if ($hasil['file_upload'] === '') : ?>
+                                                         Tidak Ada File
+                                                     <?php else : ?>
+                                                         <a href="<?php echo base_url() . 'uploads/' . $hasil['file_upload']; ?>" target="_blank">
+                                                             Lihat File
+                                                         </a>
+                                                     <?php endif; ?>
+                                                     <br>
+                                                     <label for="image">File Upload</label>
+                                                     <div class="custom-file">
+                                                         <input type="file" name="image" id="image" onchange="hideformkwitansi(this.value);">
+                                                         <input type="hidden" name="id_datalc" value="<?= $hasil['id_datalc']; ?>">
+                                                         <input type="hidden" name="nomor_lc" value="<?= $hasil['nomor_lc']; ?>">
+                                                     </div>
+                                                 </div>
                                              </div>
                                          </div>
                                      </div>
@@ -46,10 +46,10 @@
                              </div>
                          </div>
                      </form>
-             </div>
-             <!-- batas bawah file upload -->
-             <!-- batas atas file kwitansi-->
-             <div class="card">
+                 </div>
+                 <!-- batas bawah file upload -->
+                 <!-- batas atas file kwitansi-->
+                 <div class="card">
                      <form id="form-kwitansi" method="POST" action="<?php echo base_url('langitcerah/update_file_kwitansi/') ?>" enctype="multipart/form-data">
                          <div class="card-header">
                              <h5 class="card-title m-0">--Form Upload Kwitansi--</h5>
@@ -67,23 +67,23 @@
                                      <div class="card">
                                          <div class="card-body">
                                              <div class="form-row">
-                                                <div class="form-group col-md-6">
-                                                    <strong> File : </strong>
-                                                    <?php if ($hasil['file_kwitansi'] === '') : ?>
-                                                        Tidak Ada File
-                                                    <?php else : ?>
-                                                        <a href="<?php echo base_url() . 'uploads/' . $hasil['file_kwitansi']; ?>" target="_blank">
-                                                            Lihat File
-                                                        </a>
-                                                    <?php endif; ?>
-                                                    <br>
-                                                    <label for="image_kw">File Kwitansi</label>
-                                                    <div class="custom-file">
-                                                        <input type="file" name="image_kw" id="image_kw" onchange="hideformfile(this.value);">
-                                                        <input type="hidden" name="id_datalc" value="<?= $hasil['id_datalc']; ?>">
-                                                        <input type="hidden" name="nomor_lc" value="<?= $hasil['nomor_lc']; ?>" >
-                                                    </div>
-                                                </div>
+                                                 <div class="form-group col-md-6">
+                                                     <strong> File : </strong>
+                                                     <?php if ($hasil['file_kwitansi'] === '') : ?>
+                                                         Tidak Ada File
+                                                     <?php else : ?>
+                                                         <a href="<?php echo base_url() . 'uploads/' . $hasil['file_kwitansi']; ?>" target="_blank">
+                                                             Lihat File
+                                                         </a>
+                                                     <?php endif; ?>
+                                                     <br>
+                                                     <label for="image_kw">File Kwitansi</label>
+                                                     <div class="custom-file">
+                                                         <input type="file" name="image_kw" id="image_kw" onchange="hideformfile(this.value);">
+                                                         <input type="hidden" name="id_datalc" value="<?= $hasil['id_datalc']; ?>">
+                                                         <input type="hidden" name="nomor_lc" value="<?= $hasil['nomor_lc']; ?>">
+                                                     </div>
+                                                 </div>
                                              </div>
                                          </div>
                                      </div>
@@ -91,8 +91,8 @@
                              </div>
                          </div>
                      </form>
-             </div>
-             <!-- batas bawah file kwitansi -->
+                 </div>
+                 <!-- batas bawah file kwitansi -->
                  <!-- batas atas -->
                  <div class="card">
                      <form id="form-siswa" method="POST" action="<?php echo base_url('langitcerah/update_data/') ?>" enctype="multipart/form-data">
@@ -103,7 +103,7 @@
                              <?php endforeach;  ?>
                              <div class="card-tools">
                                  <button type="submit" class="btn btn-success btn-sm active" role="button" aria-pressed="true"><i class="fas fa-save"></i> Simpan</button>
-                                 <a href="<?php echo base_url('langitcerah/data_lc') ?>" class="btn btn-danger btn-sm active" role="button" aria-pressed="true"><i class="fas fa-backward"></i> Kembali</a>
+
                              </div>
                          </div>
                          <div class="card-body">
@@ -142,38 +142,7 @@
                                                      <input type="text" name="input_resi" class="form-control form-control-sm" value="<?= $hasil['input_resi']; ?>" required>
                                                  </div>
                                                  <div class="form-group col-md-6">
-                                                     <div class="form-row">
-                                                         <div class="form-group col-md-6">
-                                                             <strong> File : </strong>
-                                                             <?php if ($hasil['file_upload'] === '') : ?>
-                                                                 Tidak Ada File
-                                                             <?php else : ?>
-                                                                 <a href="<?php echo base_url() . 'uploads/' . $hasil['file_upload']; ?>" target="_blank">
-                                                                     Lihat File
-                                                                 </a>
-                                                             <?php endif; ?>
-                                                             <br>
-                                                             <label for="image">File Upload</label>
-                                                             <div class="custom-file">
-                                                                 <input type="file" name="image" id="image">
-                                                             </div>
-                                                         </div>
-                                                         <div class="form-group col-md-6">
-                                                             <strong> File : </strong>
-                                                             <?php if ($hasil['file_kwitansi'] === '') : ?>
-                                                                 Tidak Ada File
-                                                             <?php else : ?>
-                                                                 <a href="<?php echo base_url() . 'uploads/' . $hasil['file_kwitansi']; ?>" target="_blank">
-                                                                     Lihat File
-                                                                 </a>
-                                                             <?php endif; ?>
-                                                             <br>
-                                                             <label for="image_kw">File Kwitansi</label>
-                                                             <div class="custom-file">
-                                                                 <input type="file" name="image_kw" id="image_kw">
-                                                             </div>
-                                                         </div>
-                                                     </div>
+
                                                  </div>
                                                  <div class="form-group col-md-6">
                                                      <label for="nama_p">Nama Penggugat / Pemohon</label>
@@ -239,7 +208,7 @@
                          </div>
                      </form>
                  </div>
-             <!-- batas bawah -->
+                 <!-- batas bawah -->
              </div>
          </div>
      </div>
