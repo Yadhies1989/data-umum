@@ -143,6 +143,16 @@
              }
          });
      }
+
+     function hideformfile(z) {
+        $("#form-file").hide()
+     }
+     
+     function hideformkwitansi(z) {
+        $("#form-kwitansi").hide()
+     }
+
+     
  </script>
 
  </body>
