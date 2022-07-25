@@ -109,6 +109,18 @@ class M_pihak extends CI_Model
         $db2->where($id);
         $db2->delete('tb_datalc');
     }
+    public function hapus_pac($id)
+    {
+        $db2 = $this->load->database('database_kedua', TRUE);
+        $db2->where($id);
+        $db2->delete('tb_datapac');
+    }
+    public function hapus_kac($id)
+    {
+        $db2 = $this->load->database('database_kedua', TRUE);
+        $db2->where($id);
+        $db2->delete('tb_datakac');
+    }
     public function get_tahun()
     {
         $query = $this->db->query('SELECT YEAR(tanggal_putusan) AS tahun_baru FROM perkara_putusan GROUP BY tahun_baru ORDER BY tahun_baru DESC');
@@ -173,17 +185,12 @@ class M_pihak extends CI_Model
     }
     public function get_nopenggugat()
     {
-        $query  = $this->db->query("SELECT
-                a.`nomor_perkara`, b.`tgl_akta_cerai`
+        $query  = $this->db->query("SELECT a.`nomor_perkara`
                 FROM perkara AS a
-                LEFT JOIN perkara_akta_cerai AS b
-                ON a.`perkara_id`=b.`perkara_id`
-                LEFT JOIN perkara_putusan AS c
-                ON a.`perkara_id` = c.`perkara_id`
+                LEFT JOIN perkara_putusan AS b
+                ON a.`perkara_id` = b.`perkara_id`
                 WHERE a.`jenis_perkara_text` IN ('Cerai Gugat', 'Cerai Talak') 
-                AND YEAR(a.`tanggal_pendaftaran`) >= 2021
-                AND b.`tgl_akta_cerai` IS NULL
-                AND c.`status_putusan_id` = 62
+                AND YEAR(b.`tanggal_putusan`) = YEAR(CURDATE())
                 ORDER BY a.`perkara_id` DESC");
         return $query;
     }
@@ -213,6 +220,24 @@ class M_pihak extends CI_Model
         $db2 = $this->load->database('database_kedua', TRUE);
         $db2->select('*');
         $db2->from('tb_datalc');
+
+        $query = $db2->get();
+        return $query->result_array();
+    }
+    public function get_data_pac()
+    {
+        $db2 = $this->load->database('database_kedua', TRUE);
+        $db2->select('*');
+        $db2->from('tb_datapac');
+
+        $query = $db2->get();
+        return $query->result_array();
+    }
+    public function get_data_kac()
+    {
+        $db2 = $this->load->database('database_kedua', TRUE);
+        $db2->select('*');
+        $db2->from('tb_datakac');
 
         $query = $db2->get();
         return $query->result_array();

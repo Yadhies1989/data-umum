@@ -40,6 +40,11 @@
                                              <td><?= $hasil['input_resi']; ?></td>
                                          </tr>
                                          <tr>
+                                             <th scope="col">Diinput Tanggal</th>
+                                             <th>:</th>
+                                             <td><?= $hasil['created']; ?></td>
+                                         </tr>
+                                         <tr>
                                              <th scope="col">Nama Penggugat</th>
                                              <th>:</th>
                                              <td><?= $hasil['nama_p']; ?></td>
@@ -101,6 +106,15 @@
                                              <td>
                                                  <a href="<?php echo base_url() . 'uploads/' . $hasil['file_upload']; ?>" target="_blank">
                                                      <?= $hasil['file_upload']; ?>
+                                                 </a>
+                                             </td>
+                                         </tr>
+                                         <tr>
+                                             <th scope="col">File Kwitansi</th>
+                                             <th>:</th>
+                                             <td>
+                                                 <a href="<?php echo base_url() . 'uploads/' . $hasil['file_upload']; ?>" target="_blank">
+                                                     <?= $hasil['file_kwitansi']; ?>
                                                  </a>
                                              </td>
                                          </tr>

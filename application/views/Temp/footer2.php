@@ -53,7 +53,7 @@
          Swal.fire({
              icon: 'success',
              title: 'Matoh',
-             text: 'Permohonan Langit Cerah Berhasil ' + flashData,
+             text: 'Data Berhasil ' + flashData,
          });
      }
      const namaMenu = $('.nama-menu').data('namamenu');

@@ -48,8 +48,8 @@
                                                  <td><?php echo $hasil['input_resi']; ?></td>
                                                  <td width="150px">
                                                      <a href="<?php echo base_url('langitcerah/print_rtf/' . $hasil['id_datalc']) ?>" class="btn btn-danger btn-sm" title="Print Permohonan LC"><i class="fas fa-print"></i></a>
-                                                     <a data-toggle="modal" data-target="#update-data<?= $hasil['id_datalc']; ?>" class="btn btn-warning btn-sm"><i class="fas fa-download"></i></a>
-                                                     <a data-toggle="modal" data-target="#kwitansi-data<?= $hasil['id_datalc']; ?>" class="btn btn-success btn-sm"><i class="fas fa-download"></i></a>
+                                                     <a data-toggle="modal" data-target="#update-data<?= $hasil['id_datalc']; ?>" class="btn btn-warning btn-sm" title="Preview File Upload"><i class="fas fa-download"></i></a>
+                                                     <a data-toggle="modal" data-target="#kwitansi-data<?= $hasil['id_datalc']; ?>" class="btn btn-success btn-sm" title="Preview File Kwitansi"><i class="fas fa-download"></i></a>
                                                  </td>
                                                  <td width="150px">
                                                      <a data-toggle="modal" data-target="#hapus-data<?= $hasil['id_datalc']; ?>" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a>
@@ -101,7 +101,8 @@
              <div class="modal-content">
                  <div class="modal-body">
                      <div class="d-flex justify-content-center">
-                         <embed type="application/pdf" src="<?php echo base_url('uploads/') . $hasil['file_upload']; ?>" width="450" height="400"></embed>
+                         <!-- <embed type="application/pdf" src="<?php echo base_url('uploads/') . $hasil['file_upload']; ?>" width="450" height="400"></embed> -->
+                         <img src="<?php echo base_url('uploads/') . $hasil['file_upload']; ?>" alt="Gambar" width="350" height="500">
                      </div>
                  </div>
              </div>
@@ -116,7 +117,8 @@
              <div class="modal-content">
                  <div class="modal-body">
                      <div class="d-flex justify-content-center">
-                         <embed type="application/pdf" src="<?php echo base_url('uploads/') . $hasil['file_kwitansi']; ?>" width="450" height="400"></embed>
+                         <!-- <embed type="application/pdf" src="<?php echo base_url('uploads/') . $hasil['file_kwitansi']; ?>" width="450" height="400"></embed> -->
+                         <img src="<?php echo base_url('uploads/') . $hasil['file_kwitansi']; ?>" alt="Gambar" width="350" height="500">
                      </div>
                  </div>
              </div>

@@ -118,8 +118,8 @@ class Langitcerah extends CI_Controller
         $alamat_t           = $this->input->post('alamat_t');
         $telepon_t          = $this->input->post('telepon_t');
         $input_resi         = $this->input->post('input_resi') != NULL ? $this->input->post('input_resi') : 0;
-        $file_upload        = 'default.pdf';
-        $file_kwitansi      = 'default.pdf';
+        $file_upload        = 'default.jpg';
+        $file_kwitansi      = 'default.jpg';
         $created            = date('Y-m-d H:i:s');
 
 
@@ -173,7 +173,7 @@ class Langitcerah extends CI_Controller
         $upload_image = $_FILES['image']['name'];
 
         if ($upload_image) {
-            $config['allowed_types']    = 'pdf';
+            $config['allowed_types']    = 'pdf|jpg|jpeg|JPG|JPEG';
             $config['max_size']         = '2048';
             $config['upload_path']      = './uploads';
             $filename                   = str_replace('/', '_', $nomor_lc . '_foto');
@@ -183,12 +183,14 @@ class Langitcerah extends CI_Controller
 
             if ($this->upload->do_upload('image')) {
                 $old_image = $data['user']['file_upload'];
-                if ($old_image != 'default.pdf') {
+                if ($old_image != 'default.jpg') {
                     unlink(FCPATH . "uploads/" . $old_image);
                 }
 
                 $new_image = $this->upload->data('file_name');
-                $db2->set('file_upload', $new_image);
+                // $db2->set('file_upload', $new_image);
+
+                $db2->query("UPDATE tb_datalc SET file_upload = '$new_image' where id_datalc = '$id_datalc' ");
 
                 $this->session->set_flashdata('pesan', 'Di Upload');
                 redirect('langitcerah/data_lc');
@@ -198,12 +200,6 @@ class Langitcerah extends CI_Controller
                 redirect('langitcerah/data_lc');
             }
         }
-
-        $db2->where('id_datalc', $id_datalc);
-        $db2->update('tb_datalc');
-
-        $this->session->set_flashdata('pesan', 'Di Ubah');
-        redirect('langitcerah/data_lc/edit/' . $id_datalc);
     }
 
     public function update_file_kwitansi()
@@ -217,7 +213,7 @@ class Langitcerah extends CI_Controller
         $upload_image_kw = $_FILES['image_kw']['name'];
 
         if ($upload_image_kw) {
-            $config['allowed_types']    = 'pdf';
+            $config['allowed_types']    = 'pdf|jpg|jpeg|JPG|JPEG';
             $config['max_size']         = '2048';
             $config['upload_path']      = './uploads';
             $filename                   = str_replace('/', '_', $nomor_lc . '_kwitansi');
@@ -227,12 +223,14 @@ class Langitcerah extends CI_Controller
 
             if ($this->upload->do_upload('image_kw')) {
                 $old_image = $data['user']['file_kwitansi'];
-                if ($old_image != 'default.pdf') {
+                if ($old_image != 'default.jpg') {
                     unlink(FCPATH . "uploads/" . $old_image);
                 }
 
                 $new_image = $this->upload->data('file_name');
-                $db2->set('file_kwitansi', $new_image);
+
+                $db2->query("UPDATE tb_datalc SET file_kwitansi = '$new_image' where id_datalc = '$id_datalc' ");
+                // $db2->set('file_kwitansi', $new_image);
 
                 $this->session->set_flashdata('pesan', 'Di Upload');
                 redirect('langitcerah/data_lc');
@@ -242,12 +240,6 @@ class Langitcerah extends CI_Controller
                 redirect('langitcerah/data_lc');
             }
         }
-
-        $db2->where('id_datalc', $id_datalc);
-        $db2->update('tb_datalc');
-
-        $this->session->set_flashdata('pesan', 'Di Ubah');
-        redirect('langitcerah/data_lc/edit/' . $id_datalc);
     }
 
     public function update_data()
@@ -380,10 +372,10 @@ class Langitcerah extends CI_Controller
         $old_image = $row['file_upload'];
         $old_kw    = $row['file_kwitansi'];
 
-        if ($old_image != 'default.pdf') {
+        if ($old_image != 'default.jpg') {
             unlink(FCPATH . "uploads/" . $old_image);
         }
-        if ($old_kw != 'default.pdf') {
+        if ($old_kw != 'default.jpg') {
             unlink(FCPATH . "uploads/" . $old_kw);
         }
 

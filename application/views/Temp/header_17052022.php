@@ -80,23 +80,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 <li><a href="<?php echo base_url('#') ?>" class="dropdown-item">Laporan</a></li>
                             </ul>
                         </li>
-                        <li class="nav-item dropdown">
-                            <a id="dropdownSubMenu3" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link active dropdown-toggle"><i class="fas fa-book"></i> Permohonan AC</a>
-                            <ul aria-labelledby="dropdownSubMenu3" class="dropdown-menu border-0 shadow">
-                                <li><a href="<?php echo base_url('permohonanac/data_pac') ?>" class="dropdown-item">Data Permohonan AC</a></li>
-                                <li><a href="<?php echo base_url('#') ?>" class="dropdown-item">Laporan</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a id="dropdownSubMenu3" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link active dropdown-toggle"><i class="fas fa-paper-plane"></i> Pengiriman AC</a>
-                            <ul aria-labelledby="dropdownSubMenu3" class="dropdown-menu border-0 shadow">
-                                <li><a href="<?php echo base_url('pengirimanac/data_kac') ?>" class="dropdown-item">Data Pengiriman AC</a></li>
-                                <li><a href="<?php echo base_url('#') ?>" class="dropdown-item">Laporan</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item">
-                            <a href="<?php echo 'http://192.168.1.2/tantowi' ?>" class="nav-link active" target="_blank"><i class="fas fa-chart-bar"></i> Statisik</a>
-                        </li>
                     </ul>
                 </div>
 
