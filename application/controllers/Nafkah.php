@@ -39,6 +39,17 @@ class Nafkah extends CI_Controller
             $data['title'] = 'Edit Data Nafkah';
             $data['page']  = 'v_edit_nafkah';
             $data['data_lc']    = $db2->query("SELECT * FROM tb_nafkah WHERE id_nafkah = '$idu'")->result_array();
+        } elseif ($mau_ke == "laporan") {
+            if ((isset($_GET['periode']) && $_GET['periode'] != '')){
+                $periode      = $_GET['periode'];
+                $year			= date('Y', strtotime($periode));
+                $bulan		= date('m', strtotime($periode));
+            }else{
+                $year		= date_create()->format("Y");
+                $bulan		= date_create()->format("m");
+            }
+            $data['data_nafkah']   = $this->M_pihak->get_data_nafkah_laporan($year,$bulan);
+            $data['page']  = 'v_laporan_nafkah';
         } else {
             $data['page']  = 'v_nafkah';
         }

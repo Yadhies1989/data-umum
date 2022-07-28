@@ -262,6 +262,12 @@ class M_pihak extends CI_Model
         $query = $db2->get();
         return $query->result_array();
     }
+    public function get_data_nafkah_laporan($year,$bulan)
+    {
+        $db2 = $this->load->database('database_kedua', TRUE);
+        $query  = $db2->query("SELECT * FROM tb_nafkah WHERE YEAR(tgl_putus) = '$year' AND MONTH(tgl_putus) = '$bulan'");
+        return $query->result_array();
+    }
     public function hapus_nafkah($id)
     {
         $db2 = $this->load->database('database_kedua', TRUE);

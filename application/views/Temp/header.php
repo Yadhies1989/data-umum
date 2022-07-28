@@ -71,6 +71,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow">
                                 <li><a href="<?php echo base_url('audit/verstek') ?>" class="dropdown-item">Verstek Ya</a></li>
                                 <li><a href="<?php echo base_url('audit/verstek_tidak') ?>" class="dropdown-item">Verstek Tidak</a></li>
+                                <li><a href="<?php echo 'http://192.168.1.4/new_dev/arsip.php?tahun='.date("Y") ?>" class="dropdown-item">Monitoring Alih Media</a></li>
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
@@ -101,7 +102,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             <a id="dropdownSubMenu2" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link active dropdown-toggle"><i class="fas fa-dollar"></i> Nafkah</a>
                             <ul aria-labelledby="dropdownSubMenu2" class="dropdown-menu border-0 shadow">
                                 <li><a href="<?php echo base_url('nafkah/data_nafkah') ?>" class="dropdown-item">Data Nafkah</a></li>
-                                <li><a href="<?php echo base_url('#') ?>" class="dropdown-item">Laporan</a></li>
+                                <li><a href="<?php echo base_url('nafkah/data_nafkah/laporan') ?>" class="dropdown-item">Laporan</a></li>
                             </ul>
                         </li>
                     </ul>
