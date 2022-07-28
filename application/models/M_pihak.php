@@ -145,6 +145,16 @@ class M_pihak extends CI_Model
                                   nomor_perkara = '{$no_perkara}'");
         return $query;
     }
+    public function get_datap_putus($perkara_id)
+    {
+        $query  = $this->db->query("SELECT
+                                  *
+                                FROM
+                                 perkara_putusan
+                                WHERE
+                                  perkara_id = '{$perkara_id}'");
+        return $query;
+    }
     public function get_penggugat($no_perkara)
     {
         $query  = $this->db->query("SELECT 
@@ -241,5 +251,21 @@ class M_pihak extends CI_Model
 
         $query = $db2->get();
         return $query->result_array();
+    }
+
+    public function get_data_nafkah()
+    {
+        $db2 = $this->load->database('database_kedua', TRUE);
+        $db2->select('*');
+        $db2->from('tb_nafkah');
+
+        $query = $db2->get();
+        return $query->result_array();
+    }
+    public function hapus_nafkah($id)
+    {
+        $db2 = $this->load->database('database_kedua', TRUE);
+        $db2->where($id);
+        $db2->delete('tb_nafkah');
     }
 }
