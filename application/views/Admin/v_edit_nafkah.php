@@ -29,7 +29,7 @@
                                                  </div>
                                                  <div class="form-group col-md-6">
                                                      <label for="ket">Keterangan</label>
-                                                     <input type="text" name="ket" class="form-control form-control-sm" value="<?= $hasil['ket']; ?>" required>
+                                                     <textarea name="ket" class="form-control form-control-sm" value="<?= $hasil['ket']; ?>" required><?= $hasil['ket'];?></textarea>
                                                      <input type="hidden" name="id_nafkah" class="form-control form-control-sm" value="<?= $hasil['id_nafkah']; ?>" required>
                                                  </div>
                                              </div>

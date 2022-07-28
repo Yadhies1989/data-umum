@@ -26,10 +26,10 @@
                                                  </div>
                                                  <div class="form-group col-md-6">
                                                      <label for="ket">Keterangan</label>
-                                                     <input type="text" name="ket" class="form-control form-control-sm" placeholder="Keterangan">
+                                                     <textarea name="ket" class="form-control form-control-sm" placeholder="Keterangan"></textarea>
                                                  </div>
-                                             <!-- </div> -->
-                                         </div>
+                                             </div>
+                                         <!-- </div> -->
                                      </div>
                                  </div>
                              </div>
