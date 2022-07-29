@@ -40,15 +40,15 @@ class Nafkah extends CI_Controller
             $data['page']  = 'v_edit_nafkah';
             $data['data_lc']    = $db2->query("SELECT * FROM tb_nafkah WHERE id_nafkah = '$idu'")->result_array();
         } elseif ($mau_ke == "laporan") {
-            if ((isset($_GET['periode']) && $_GET['periode'] != '')){
+            if ((isset($_GET['periode']) && $_GET['periode'] != '')) {
                 $periode      = $_GET['periode'];
-                $year			= date('Y', strtotime($periode));
-                $bulan		= date('m', strtotime($periode));
-            }else{
-                $year		= date_create()->format("Y");
-                $bulan		= date_create()->format("m");
+                $year            = date('Y', strtotime($periode));
+                $bulan        = date('m', strtotime($periode));
+            } else {
+                $year        = date_create()->format("Y");
+                $bulan        = date_create()->format("m");
             }
-            $data['data_nafkah']   = $this->M_pihak->get_data_nafkah_laporan($year,$bulan);
+            $data['data_nafkah']   = $this->M_pihak->get_data_nafkah_laporan($year, $bulan);
             $data['page']  = 'v_laporan_nafkah';
         } else {
             $data['page']  = 'v_nafkah';
@@ -74,38 +74,25 @@ class Nafkah extends CI_Controller
             echo json_encode($this->result);
         endif;
     }
-    public function get_perkawis()
-    {
+    public function get_amar()
+    {       
         if (!$this->input->is_ajax_request()) :
             show_404();
         else :
 
             $no_perkara1   = $this->input->get('no_perkaraname');
-            $siswa  = $this->M_pihak->get_penggugat($no_perkara1);
-            if ($siswa->num_rows() > 0) :
+            $perkara_id = $this->M_pihak->get_datap($no_perkara1)->row_array();
+            $perkara_putus = $this->M_pihak->get_datap_putus($perkara_id['perkara_id']);
+
+            if ($perkara_putus->num_rows() > 0) :
                 $this->result['status'] = true;
-                $this->result['data']   = $siswa->row_array();
+                $this->result['data']   = $perkara_putus->row_array();
             endif;
 
             echo json_encode($this->result);
         endif;
     }
-    public function get_perkawis2()
-    {
-        if (!$this->input->is_ajax_request()) :
-            show_404();
-        else :
 
-            $no_perkara1   = $this->input->get('no_perkaraname');
-            $siswa  = $this->M_pihak->get_tergugat($no_perkara1);
-            if ($siswa->num_rows() > 0) :
-                $this->result['status'] = true;
-                $this->result['data']   = $siswa->row_array();
-            endif;
-
-            echo json_encode($this->result);
-        endif;
-    }
     public function tambah_data()
     {
         $perkara = $this->M_pihak->get_datap($this->input->post('no_perkaraname'))->row_array();
@@ -157,7 +144,6 @@ class Nafkah extends CI_Controller
 
         $this->session->set_flashdata('pesan', 'Di Ubah');
         redirect('nafkah/data_nafkah');
-
     }
     public function hapus_data($id)
     {

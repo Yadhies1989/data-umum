@@ -144,6 +144,24 @@
          });
      }
 
+     function show_dataperkara_nafkah(x) {
+         $.ajax({
+             url: "<?php echo base_url('nafkah/get_amar'); ?>",
+             type: "GET",
+             dataType: "JSON",
+             data: {
+                 no_perkaraname: x
+                 // harus sama dengan variabel name di views
+             },
+             success: function(x) {
+                 if (x.status == true) {
+                     $('.data-perkara').show()
+                     $('#amar').html(x.data.amar_putusan);
+                 }
+             }
+         });
+     }
+
      function hideformfile(z) {
         $("#form-file").hide()
      }

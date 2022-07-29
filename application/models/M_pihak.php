@@ -137,22 +137,12 @@ class M_pihak extends CI_Model
     }
     public function get_datap($no_perkara)
     {
-        $query  = $this->db->query("SELECT
-                                  *
-                                FROM
-                                  {$this->table_perkara}
-                                WHERE
-                                  nomor_perkara = '{$no_perkara}'");
+        $query  = $this->db->query("SELECT * FROM {$this->table_perkara} WHERE nomor_perkara = '{$no_perkara}'");
         return $query;
     }
     public function get_datap_putus($perkara_id)
     {
-        $query  = $this->db->query("SELECT
-                                  *
-                                FROM
-                                 perkara_putusan
-                                WHERE
-                                  perkara_id = '{$perkara_id}'");
+        $query  = $this->db->query("SELECT * FROM perkara_putusan WHERE perkara_id = '{$perkara_id}'");
         return $query;
     }
     public function get_penggugat($no_perkara)
@@ -262,7 +252,7 @@ class M_pihak extends CI_Model
         $query = $db2->get();
         return $query->result_array();
     }
-    public function get_data_nafkah_laporan($year,$bulan)
+    public function get_data_nafkah_laporan($year, $bulan)
     {
         $db2 = $this->load->database('database_kedua', TRUE);
         $query  = $db2->query("SELECT * FROM tb_nafkah WHERE YEAR(tgl_putus) = '$year' AND MONTH(tgl_putus) = '$bulan'");
