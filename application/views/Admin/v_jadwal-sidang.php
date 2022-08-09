@@ -20,9 +20,9 @@
                                          <label for="ruang_sidang" class="col-form-label-sm">Ruang Sidang : </label>
                                          <select class="form-control ml-3 mr-3 form-control-sm" name="ruang_sidang">
                                              <option value="">--Pilih--</option>
-                                             <option value="1">1</option>
-                                             <option value="2">2</option>
-                                             <option value="3">3</option>
+                                             <?php foreach ($ruangan as $rng) : ?>
+                                                 <option value="<?php echo $rng['nama']; ?>"><?php echo $rng['nama']; ?></option>
+                                             <?php endforeach ?>
                                          </select>
                                      </div>
                                      <div class="form-group mb-2">

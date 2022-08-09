@@ -283,6 +283,7 @@ class User extends CI_Controller
 		$hakim = $majelis;
 		$list_hakim = $this->db->get_where('hakim_pn', array('id' => $hakim))->row_array();
 		$data['hakim_nama'] = $list_hakim['nama_gelar'];
+		$data['ruangan'] = $this->db->query('select kode, nama from ruangan_sidang')->result_array();
 
 		$data['jadwal_sidang']  = $this->db->query("SELECT a.`nomor_perkara`, b.`tanggal_sidang`, c.nama AS Penggugat, d.`nama` AS Tergugat, b.`alasan_ditunda`,
 		e.`hakim_nama`, e.`hakim_id`, b.`urutan`, b.`agenda`, a.`perkara_id`, m.tanggal_sidang AS tgl_sebelum, 
@@ -341,6 +342,7 @@ class User extends CI_Controller
 		$hakim = $majelis;
 		$list_hakim = $this->db->get_where('hakim_pn', array('id' => $hakim))->row_array();
 		$data['hakim_nama'] = $list_hakim['nama_gelar'];
+		// $data['ruangan'] = $this->db->query('select kode, nama from ruangan_sidang')->result_array();
 
 		$list_majelis = $this->db->query("SELECT a.`nomor_perkara`, b.`hakim_nama`, 
 		b.`jabatan_hakim_nama`, b.`hakim_id`,
