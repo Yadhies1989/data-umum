@@ -82,21 +82,20 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
-                            <a id="dropdownSubMenu3" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link active dropdown-toggle"><i class="fas fa-book"></i> Permohonan AC</a>
+                            <a id="dropdownSubMenu3" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link active dropdown-toggle"><i class="fas fa-book"></i> Tabayun AC</a>
                             <ul aria-labelledby="dropdownSubMenu3" class="dropdown-menu border-0 shadow">
                                 <li><a href="<?php echo base_url('permohonanac/data_pac') ?>" class="dropdown-item">Data Permohonan AC</a></li>
-                                <li><a href="<?php echo base_url('#') ?>" class="dropdown-item">Laporan</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a id="dropdownSubMenu3" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link active dropdown-toggle"><i class="fas fa-paper-plane"></i> Pengiriman AC</a>
-                            <ul aria-labelledby="dropdownSubMenu3" class="dropdown-menu border-0 shadow">
                                 <li><a href="<?php echo base_url('pengirimanac/data_kac') ?>" class="dropdown-item">Data Pengiriman AC</a></li>
-                                <li><a href="<?php echo base_url('#') ?>" class="dropdown-item">Laporan</a></li>
                             </ul>
                         </li>
                         <li class="nav-item">
-                            <a href="<?php echo 'http://192.168.1.2/tantowi' ?>" class="nav-link active" target="_blank"><i class="fas fa-chart-bar"></i> Statisik</a>
+                            <a href="<?php echo 'http://192.168.1.2/adel' ?>" class="nav-link active" target="_blank"><i class="fas fa-biking"></i> ADEL</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="<?php echo 'http://192.168.1.2/info_bht' ?>" class="nav-link active" target="_blank"><i class="fas fa-bullhorn"></i> SIBERKAT</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="<?php echo 'http://192.168.1.2/tantowi' ?>" class="nav-link active" target="_blank"><i class="fas fa-chart-line"></i> Statisik</a>
                         </li>
                         <li class="nav-item dropdown">
                             <a id="dropdownSubMenu2" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link active dropdown-toggle"><i class="fas fa-dollar"></i> Nafkah</a>
