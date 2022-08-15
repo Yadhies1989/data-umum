@@ -115,6 +115,7 @@
                      $('#pendidikan_p').val(x.data.kode);
                      $('#alamat_p').val(x.data.alamat);
                      $('#telpon_p').val(x.data.telepon);
+                     $('#tanggal_putusan').val(x.data.tanggal_putusan);
                  }
              }
          });

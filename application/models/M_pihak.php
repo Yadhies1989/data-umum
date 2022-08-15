@@ -148,13 +148,15 @@ class M_pihak extends CI_Model
     public function get_penggugat($no_perkara)
     {
         $query  = $this->db->query("SELECT 
-                a.`perkara_id`, a.`nomor_perkara`,
+                a.`perkara_id`, a.`nomor_perkara`, z.`tanggal_putusan`,
                 b.`nama` AS nama_p,
                 d.`alamat`, d.`tanggal_lahir`, d.`agama_id`, agm.`nama`, d.`pekerjaan`, d.`pendidikan_id`, t.`kode` , d.`telepon`, 
                 TIMESTAMPDIFF(YEAR, d.`tanggal_lahir`, CURDATE()) AS umur_p
                 FROM perkara AS a
                 LEFT JOIN perkara_pihak1 AS b
                 ON b.`perkara_id` = a.`perkara_id`
+                LEFT JOIN perkara_putusan AS z
+                ON b.`perkara_id` = z.`perkara_id`
                 LEFT JOIN pihak AS d
                 ON b.`pihak_id` = d.`id`
                 LEFT JOIN agama AS agm
@@ -264,4 +266,14 @@ class M_pihak extends CI_Model
         $db2->where($id);
         $db2->delete('tb_nafkah');
     }
+    public function get_data_dup()
+    {
+        $db2 = $this->load->database('database_kedua', TRUE);
+        $db2->select('*');
+        $db2->from('tbl_duplikat');
+
+        $query = $db2->get();
+        return $query->result_array();
+    }
+    
 }
