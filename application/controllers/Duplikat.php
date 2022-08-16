@@ -205,12 +205,11 @@ class Duplikat extends CI_Controller
 
 
         );
-        var_dump($data);
-        // $db2 = $this->load->database('database_kedua', TRUE);
-        // $db2->insert('tbl_duplikat', $data);
+        $db2 = $this->load->database('database_kedua', TRUE);
+        $db2->insert('tbl_duplikat', $data);
 
-        // $this->session->set_flashdata('pesan', 'Di Tambahkan');
-        // redirect('duplikat/data_dup');
+        $this->session->set_flashdata('pesan', 'Di Tambahkan');
+        redirect('duplikat/data_dup');
     }
 
     public function update_data()
