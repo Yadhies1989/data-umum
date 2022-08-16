@@ -128,10 +128,15 @@ class Duplikat extends CI_Controller
         
         $alamat_pemohon = NULL;
         if($this->input->post('kota') == 'Bojonegoro'){
-            $kecamatan      = $this->input->post('kecamatan');
-            $desa           = $this->input->post('desa');
+            $db2 = $this->load->database('database_kedua', TRUE);
+            
+            $kecamatan_input      = $this->input->post('kecamatan');
+            $kecamatan            =  $db2->query("SELECT * FROM tbl_kecamatan WHERE id=$kecamatan_input")->row_array();
+            $desa_input           = $this->input->post('desa');
+            $desa                 =  $db2->query("SELECT * FROM tbl_desa WHERE id=$desa_input")->row_array();
+            
             $dalam_kota     = $this->input->post('dalam_kota');
-            $alamat_pemohon = $dalam_kota.', '.$desa.', '.$kecamatan.', Kabupaten Bojonegoro, Jawa Timur';
+            $alamat_pemohon = $dalam_kota.', Desa '.$desa['nama'].', Kecamatan '.$kecamatan['nama'].', Kabupaten Bojonegoro, Provinsi Jawa Timur';
         }else if($this->input->post('kota') == 'Luar Kota'){
             $alamat_pemohon = $this->input->post('luar_kota');
         }
@@ -194,17 +199,18 @@ class Duplikat extends CI_Controller
             'belum_kua'         => $belum_kua,
             'no_belum_kua'      => $no_belum_kua,
             'tgl_belum_kua'     => $tgl_belum_kua,
-            'kua'               => $kua,
+            'kua'               => 'KUA '.$kua,
             'alasan_dup'        => $alasan_dup,
             'created_at'        => $created_at
 
 
         );
-        $db2 = $this->load->database('database_kedua', TRUE);
-        $db2->insert('tbl_duplikat', $data);
+        var_dump($data);
+        // $db2 = $this->load->database('database_kedua', TRUE);
+        // $db2->insert('tbl_duplikat', $data);
 
-        $this->session->set_flashdata('pesan', 'Di Tambahkan');
-        redirect('duplikat/data_dup');
+        // $this->session->set_flashdata('pesan', 'Di Tambahkan');
+        // redirect('duplikat/data_dup');
     }
 
     public function update_data()
