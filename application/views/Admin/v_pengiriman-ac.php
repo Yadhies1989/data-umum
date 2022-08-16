@@ -26,6 +26,7 @@
                                              <th scope="col">No AC</th>
                                              <th scope="col">Tgl Resi</th>
                                              <th scope="col">No Resi</th>
+                                             <th scope="col">PA Tujuan</th>
                                              <th scope="col">Aksi</th>
                                          </tr>
                                      </thead>
@@ -41,6 +42,7 @@
                                                  <td><?php echo $hasil['no_ac']; ?></td>
                                                  <td><?php echo tanggal_indonesia($hasil['tgl_resi']); ?></td>
                                                  <td><?php echo $hasil['no_resi']; ?></td>
+                                                 <td><?php echo $hasil['pa_tujuan']; ?></td>
                                                  <td width="150px">
                                                      <a data-toggle="modal" data-target="#hapus-data<?= $hasil['id_kac']; ?>" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a>
                                                      <a href="<?php echo base_url('pengirimanac/data_kac/view/' . $hasil['id_kac']) ?>" class="btn btn-primary btn-sm" title="View Data"><i class="fas fa-eye"></i></a>

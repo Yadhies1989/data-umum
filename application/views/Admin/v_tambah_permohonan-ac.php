@@ -24,8 +24,8 @@
                                                      <input type="text" name="nomor_surat" class="form-control form-control-sm" placeholder="Nomor Surat" required>
                                                  </div> 
                                                  <div class="form-group col-md-6">
-                                                     <label for="pa_asal">Pengadilan Agama Asal</label>
-                                                     <input type="text" name="pa_asal" class="form-control form-control-sm" placeholder="Pengadilan Agama Asal" required>
+                                                     <label for="pa_asal">Pengadilan Agama Tujuan</label>
+                                                     <input type="text" name="pa_asal" class="form-control form-control-sm" placeholder="Pengadilan Agama Tujuan" required>
                                                  </div>
                                                  <div class="form-group col-md-6">
                                                      <label for="no_pkr">No Perkara</label>

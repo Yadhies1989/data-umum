@@ -49,6 +49,7 @@ class PengirimanAC extends CI_Controller
         $no_ac              = $this->input->post('no_ac');
         $tgl_resi           = $this->input->post('tgl_resi');
         $no_resi            = $this->input->post('no_resi');
+        $pa_tujuan          = $this->input->post('pa_tujuan');
         $created            = date('Y-m-d H:i:s');
         $updated            = date('Y-m-d H:i:s');
 
@@ -59,6 +60,7 @@ class PengirimanAC extends CI_Controller
             'no_ac'           => $no_ac,
             'tgl_resi'        => $tgl_resi,
             'no_resi'         => $no_resi,
+            'pa_tujuan'       => $pa_tujuan,
             'created'         => $created,
             'updated'         => $updated,
         );

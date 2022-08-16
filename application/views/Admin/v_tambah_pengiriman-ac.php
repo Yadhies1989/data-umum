@@ -39,6 +39,10 @@
                                                      <label for="no_resi">No Resi</label>
                                                      <input type="text" name="no_resi" class="form-control form-control-sm" placeholder="Nomor Resi" required>
                                                  </div>
+                                                 <div class="form-group col-md-6">
+                                                     <label for="pa_tujuan">Pengadilan Agama Tujuan</label>
+                                                     <input type="text" name="pa_tujuan" class="form-control form-control-sm" placeholder="Pengadilan Agama Tujuan" required>
+                                                 </div>
                                              </div>
                                          </div>
                                      </div>

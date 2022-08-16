@@ -23,7 +23,7 @@
                                              <th scope="col">No</th>
                                              <th scope="col">Tanggal</th>
                                              <th scope="col">No Surat</th>
-                                             <th scope="col">PA Asal</th>
+                                             <th scope="col">PA Tujuan</th>
                                              <th scope="col">No Perkara</th>
                                              <th scope="col">No HP CP</th>
                                              <th scope="col">Tgl Wesel</th>

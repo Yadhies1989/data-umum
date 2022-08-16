@@ -25,7 +25,7 @@
                                              <td><?= tanggal_indonesia($hasil['tgl']); ?></td>
                                          </tr>
                                          <tr>
-                                             <th scope="col">Pengadilan Agama Asal</th>
+                                             <th scope="col">Pengadilan Agama Tujuan</th>
                                              <th>:</th>
                                              <td><?= $hasil['pa_asal']; ?></td>
                                          </tr>
