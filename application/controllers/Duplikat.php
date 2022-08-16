@@ -480,4 +480,17 @@ class Duplikat extends CI_Controller
         header("Content-length: " . strlen($document));
         echo $document;
     }
+    public function hapus_data($id)
+    {
+        //load db kedua
+        $db2 = $this->load->database('database_kedua', TRUE);
+        # hapus file
+        $row = $db2->where('id_dup', $id)->get('tbl_duplikat')->row_array();
+
+        $where = array('id_dup' => $id);
+        $this->M_pihak->hapus_dup($where, 'tbl_duplikat');
+
+        $this->session->set_flashdata('pesan', 'DiHapus !!!');
+        redirect('duplikat/data_dup');
+    }
 }

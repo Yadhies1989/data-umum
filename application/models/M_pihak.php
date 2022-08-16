@@ -109,6 +109,12 @@ class M_pihak extends CI_Model
         $db2->where($id);
         $db2->delete('tb_datalc');
     }
+    public function hapus_dup($id)
+    {
+        $db2 = $this->load->database('database_kedua', TRUE);
+        $db2->where($id);
+        $db2->delete('tbl_duplikat');
+    }
     public function hapus_pac($id)
     {
         $db2 = $this->load->database('database_kedua', TRUE);
