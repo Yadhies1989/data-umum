@@ -223,6 +223,26 @@ class M_pihak extends CI_Model
         $kodetampil = "LC" . "/" . $bulan . "/" . $tahun . "/" . $batas;  //format kode
         return $kodetampil;
     }
+    public function kode_duplikat()
+    {
+        $db2 = $this->load->database('database_kedua', TRUE);
+        $db2->select('LEFT(tbl_duplikat.reg_dup,4) as kode_barang', FALSE);
+        $db2->order_by('kode_barang', 'DESC');
+        $db2->limit(1);
+
+        $query = $db2->get('tbl_duplikat');  //cek dulu apakah ada sudah ada kode di tabel.    
+        if ($query->num_rows() <> 0) {
+            //cek kode jika telah tersedia    
+            $data = $query->row();
+            $kode = intval($data->kode_barang) + 1;
+        } else {
+            $kode = 71;  //cek jika kode belum terdapat pada table
+        }
+        $tahun = date('Y');
+        $batas = str_pad($kode, 4, "0", STR_PAD_LEFT);
+        $kodetampil = $batas."/"."Dup"."/"."AC"."/".$tahun."/"."PA.Bjn";  //format kode
+        return $kodetampil;
+    }
     public function get_data_lc()
     {
         $db2 = $this->load->database('database_kedua', TRUE);

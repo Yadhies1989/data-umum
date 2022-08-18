@@ -21,7 +21,7 @@ class Duplikat extends CI_Controller
         $db2 = $this->load->database('database_kedua', TRUE);
         $data['user']      = $this->db->get_where('sys_users', ['username' => $this->session->userdata('username')])->row_array();
         $data['title']     = "Duplikat Akta Cerai";
-        // $data['kode']      = $this->M_pihak->kode();
+        $data['kode_duplikat']      = $this->M_pihak->kode_duplikat();
         $data['data_dup']   = $this->M_pihak->get_data_dup();
 
 
@@ -117,9 +117,10 @@ class Duplikat extends CI_Controller
     }
     public function tambah_data()
     {
-        $reg_dup_no             = $this->input->post('reg_dup');
-        $reg_dup_tahun          = $this->input->post('reg_dup_tahun');
-        $reg_dup = $reg_dup_no.'/Dup/AC/'.$reg_dup_tahun.'/PA.Bjn';
+        $reg_dup             = $this->input->post('reg_dup');
+        // $reg_dup_no             = $this->input->post('reg_dup');
+        // $reg_dup_tahun          = $this->input->post('reg_dup_tahun');
+        // $reg_dup = $reg_dup_no.'/Dup/AC/'.$reg_dup_tahun.'/PA.Bjn';
        
         $tgl_dup                = $this->input->post('tgl_dup');
         $nama_pemohon           = $this->input->post('nama_pemohon');

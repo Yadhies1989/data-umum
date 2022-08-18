@@ -19,11 +19,15 @@
                                     <div class="card">
                                         <div class="card-body">
                                             <div class="form-row">
-                                                <div class="form-group row">
+                                                <div class="form-group col-md-12">
+                                                    <label for="no_lc">Register Duplikat</label>
+                                                    <input type="text" name="reg_dup" class="form-control form-control-sm" value="<?= $kode_duplikat; ?>" readonly>
+                                                </div>
+                                                <!-- <div class="form-group row">
                                                     <div class="row col-6">
                                                         <label for="reg_dup" class="col-sm-5 col-form-label">Register Duplikat</label>
                                                         <div class="col-sm-3">
-                                                            <input type="text" class="form-control" name="reg_dup" placeholder="Nomor" required>
+                                                            <input type="text" class="form-control" name="reg_dup" placeholder="Nomor" >
                                                         </div>
                                                         <div class="col-sm-2">
                                                             <input type="text" class="form-control" name="dup" value="Dup" readonly>
@@ -53,7 +57,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
+                                                </div> -->
                                                 <div class="form-group col-md-12">
                                                     <label for="tgl_dup">Tanggal Permohonan</label>
                                                     <input type="date" name="tgl_dup" class="form-control form-control-sm" required>
