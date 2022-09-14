@@ -115,6 +115,25 @@ class Duplikat extends CI_Controller
             echo json_encode($this->result);
         endif;
     }
+    function autogenerate() {
+        $chars = array(
+            'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm',
+            'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
+            '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'
+        );
+    
+        shuffle($chars);
+    
+        $num_chars = 10;
+        $token = '';
+    
+        for ($i = 0; $i < $num_chars; $i++){ // <-- $num_chars instead of $len
+            $token .= $chars[mt_rand(0, $num_chars)];
+        }
+    
+        return $token;
+    }
+
     public function tambah_data()
     {
         $reg_dup             = $this->input->post('reg_dup');
@@ -202,7 +221,8 @@ class Duplikat extends CI_Controller
             'tgl_belum_kua'     => $tgl_belum_kua,
             'kua'               => 'KUA '.$kua,
             'alasan_dup'        => $alasan_dup,
-            'created_at'        => $created_at
+            'created_at'        => $created_at,
+            'kode'              => $this->autogenerate()
 
 
         );
@@ -416,6 +436,25 @@ class Duplikat extends CI_Controller
         header("Content-length: " . strlen($document));
         echo $document;
     }
+    private	function _fileToHex($id_dup) 
+    {	  
+        $f = fopen(base_url().$id_dup.'.png', "r");
+        $string = fread($f, filesize(base_url().$id_dup.'.png'));
+        fclose($f);
+    
+        $str = '';
+        for ($i = 0; $i < strlen($string); $i ++) {
+            $hex = dechex( ord($string{$i}));
+        
+            if (strlen($hex) == 1) {			  
+                $hex = '0'.$hex;
+            }
+        
+            $str .= $hex;	
+        }
+        
+        return $str;
+    }
 
     public function print_dup_rtf()
     {
@@ -447,8 +486,7 @@ class Duplikat extends CI_Controller
         $alasan_dup         = $kode_rtf['alasan_dup'];
         $jenis_ac           = $kode_rtf['jenis_ac'];
         $hari_dup           = nama_hari($kode_rtf['tgl_dup']);
-        $reg_dup           = $kode_rtf['reg_dup'];
-
+        $reg_dup            = $kode_rtf['reg_dup'];
 
 
         $document = file_get_contents('./uploads/blanko_dup_asli.rtf');
@@ -482,7 +520,7 @@ class Duplikat extends CI_Controller
 
 
         header("Content-type: application/rtf");
-        header("Content-disposition: inline; filename=dup_$nama_pemohon.rtf");
+        header("Content-disposition: inline; filename=dup_$reg_dup.rtf");
         header("Content-length: " . strlen($document));
         echo $document;
     }

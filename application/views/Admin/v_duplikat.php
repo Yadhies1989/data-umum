@@ -37,6 +37,18 @@
                                             $no = 1;
                                             foreach ($data_dup as $hasil) :
                                             ?>
+                                            <?php
+                                                if($hasil['kode'] != NULL){
+                                                    $file_name = str_replace('/','_',$hasil['reg_dup']);
+                                                    $file_name = str_replace('.','',$file_name);
+
+                                                    $params['data'] = 'https://infoac.pa-bojonegoro.go.id/ac/duplikat/'.$hasil['kode'];
+                                                    $params['level'] = 'H';
+                                                    $params['size'] = 10;
+                                                    $params['savename'] = FCPATH.$file_name.'.png';
+                                                    $this->ciqrcode->generate($params);
+                                                } 
+                                                ?>
                                              <tr>
                                                  <td width="20px"><?php echo $no++ ?></td>
                                                  <td><?php echo $hasil['reg_dup']; ?></td>
@@ -51,6 +63,9 @@
                                                      <a href="<?php echo base_url('duplikat/print_rtf/' . $hasil['id_dup']) ?>" class="btn btn-warning btn-sm" title="Print Permohonan Duplikat"><i class="fas fa-print"></i></a>
                                                      <a href="<?php echo base_url('duplikat/print_ba_rtf/' . $hasil['id_dup']) ?>" class="btn btn-success btn-sm" title="Print Berita Acara Penyerahan Duplikat"><i class="fas fa-print"></i></a>
                                                      <a href="<?php echo base_url('duplikat/print_dup_rtf/' . $hasil['id_dup']) ?>" class="btn btn-primary btn-sm" title="Print Duplikat AC"><i class="fas fa-print"></i></a>
+                                                     <?php if ($hasil['kode'] != NULL) {?>
+                                                     <a href="<?php echo base_url().$file_name.'.png' ?>" class="btn btn-danger btn-sm" title="Print QR" download="<?php echo $file_name; ?>"><i class="fas fa-print"></i></a>
+                                                    <?php }?>
                                                  </td>
                                                  <td width="150px">
                                                      <a data-toggle="modal" data-target="#hapus-data<?= $hasil['id_dup']; ?>" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a>
