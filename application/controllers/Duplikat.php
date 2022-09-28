@@ -18,7 +18,8 @@ class Duplikat extends CI_Controller
 
     public function data_dup()
     {
-        $db2 = $this->load->database('database_kedua', TRUE);
+        // $db2 = $this->load->database('database_kedua', TRUE);
+        $db3 = $this->load->database('database_ketiga', TRUE);
         $data['user']      = $this->db->get_where('sys_users', ['username' => $this->session->userdata('username')])->row_array();
         $data['title']     = "Duplikat Akta Cerai";
         $data['kode_duplikat']      = $this->M_pihak->kode_duplikat();
@@ -34,11 +35,11 @@ class Duplikat extends CI_Controller
         } elseif ($mau_ke == "view") {
             $data['title'] = 'View Data Duplikat';
             $data['page']  = 'v_view_dup';
-            $data['data_dup']    = $db2->query("SELECT * FROM tbl_duplikat WHERE id_dup = '$idu'")->result_array();
+            $data['data_dup']    = $db3->query("SELECT * FROM tbl_duplikat WHERE id_dup = '$idu'")->result_array();
         } elseif ($mau_ke == "edit") {
             $data['title'] = 'Edit Data Duplikat';
             $data['page']  = 'v_edit_dup';
-            $data['data_dup']    = $db2->query("SELECT * FROM tbl_duplikat WHERE id_dup = '$idu'")->result_array();
+            $data['data_dup']    = $db3->query("SELECT * FROM tbl_duplikat WHERE id_dup = '$idu'")->result_array();
         } else {
             $data['page']  = 'v_duplikat';
         }
@@ -136,6 +137,7 @@ class Duplikat extends CI_Controller
 
     public function tambah_data()
     {
+        $db3 = $this->load->database('database_ketiga', TRUE);
         $reg_dup             = $this->input->post('reg_dup');
         // $reg_dup_no             = $this->input->post('reg_dup');
         // $reg_dup_tahun          = $this->input->post('reg_dup_tahun');
@@ -226,8 +228,8 @@ class Duplikat extends CI_Controller
 
 
         );
-        $db2 = $this->load->database('database_kedua', TRUE);
-        $db2->insert('tbl_duplikat', $data);
+        $db3 = $this->load->database('database_ketiga', TRUE);
+        $db3->insert('tbl_duplikat', $data);
 
         $this->session->set_flashdata('pesan', 'Di Tambahkan');
         redirect('duplikat/data_dup');
@@ -263,8 +265,8 @@ class Duplikat extends CI_Controller
         $alasan_dup             = $this->input->post('alasan_dup');
         $updated_at             = date('Y-m-d H:i:s');
 
-        $db2 = $this->load->database('database_kedua', TRUE);
-        $data['user']      = $db2->get_where('tbl_duplikat', ['id_dup' => $id_dup])->row_array();
+        $db3 = $this->load->database('database_ketiga', TRUE);
+        $data['user']      = $db3->get_where('tbl_duplikat', ['id_dup' => $id_dup])->row_array();
 
         $data = array(
             'reg_dup'           => $reg_dup,
@@ -294,8 +296,8 @@ class Duplikat extends CI_Controller
             'updated_at'        => $updated_at
         );
 
-        $db2->where('id_dup', $id_dup);
-        $db2->update('tbl_duplikat', $data);
+        $db3->where('id_dup', $id_dup);
+        $db3->update('tbl_duplikat', $data);
 
         $this->session->set_flashdata('pesan', 'Di Ubah');
         redirect('duplikat/data_dup');
@@ -303,10 +305,11 @@ class Duplikat extends CI_Controller
 
     public function print_rtf()
     {
-        $db2        = $this->load->database('database_kedua', TRUE);
+        // $db2        = $this->load->database('database_kedua', TRUE);
+        $db3        = $this->load->database('database_ketiga', TRUE);
         $id_dup  = $this->uri->segment(3);
 
-        $kode_rtf   = $db2->query("SELECT * FROM tbl_duplikat WHERE id_dup = '$id_dup'")->row_array();
+        $kode_rtf   = $db3->query("SELECT * FROM tbl_duplikat WHERE id_dup = '$id_dup'")->row_array();
         
         $tgl_dup            = tanggal_indonesia($kode_rtf['tgl_dup']);
         $kondisi_ac         = $kode_rtf['kondisi_ac'];
@@ -369,10 +372,11 @@ class Duplikat extends CI_Controller
 
     public function print_ba_rtf()
     {
-        $db2        = $this->load->database('database_kedua', TRUE);
+        // $db2        = $this->load->database('database_kedua', TRUE);
+        $db3        = $this->load->database('database_ketiga', TRUE);
         $id_dup  = $this->uri->segment(3);
 
-        $kode_rtf   = $db2->query("SELECT * FROM tbl_duplikat WHERE id_dup = '$id_dup'")->row_array();
+        $kode_rtf   = $db3->query("SELECT * FROM tbl_duplikat WHERE id_dup = '$id_dup'")->row_array();
         
         $tgl_dup            = tanggal_indonesia($kode_rtf['tgl_dup']);
         $kondisi_ac         = $kode_rtf['kondisi_ac'];
@@ -458,10 +462,11 @@ class Duplikat extends CI_Controller
 
     public function print_dup_rtf()
     {
-        $db2        = $this->load->database('database_kedua', TRUE);
+        // $db2        = $this->load->database('database_kedua', TRUE);
+        $db3        = $this->load->database('database_ketiga', TRUE);
         $id_dup  = $this->uri->segment(3);
 
-        $kode_rtf   = $db2->query("SELECT * FROM tbl_duplikat WHERE id_dup = '$id_dup'")->row_array();
+        $kode_rtf   = $db3->query("SELECT * FROM tbl_duplikat WHERE id_dup = '$id_dup'")->row_array();
         
         $tgl_dup            = tanggal_indonesia($kode_rtf['tgl_dup']);
         $kondisi_ac         = $kode_rtf['kondisi_ac'];
@@ -527,9 +532,11 @@ class Duplikat extends CI_Controller
     public function hapus_data($id)
     {
         //load db kedua
-        $db2 = $this->load->database('database_kedua', TRUE);
+        // $db2 = $this->load->database('database_kedua', TRUE);
+        //load db ketiga
+        $db3 = $this->load->database('database_ketiga', TRUE);
         # hapus file
-        $row = $db2->where('id_dup', $id)->get('tbl_duplikat')->row_array();
+        $row = $db3->where('id_dup', $id)->get('tbl_duplikat')->row_array();
 
         $where = array('id_dup' => $id);
         $this->M_pihak->hapus_dup($where, 'tbl_duplikat');

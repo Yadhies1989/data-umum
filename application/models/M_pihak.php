@@ -111,9 +111,9 @@ class M_pihak extends CI_Model
     }
     public function hapus_dup($id)
     {
-        $db2 = $this->load->database('database_kedua', TRUE);
-        $db2->where($id);
-        $db2->delete('tbl_duplikat');
+        $db3 = $this->load->database('database_ketiga', TRUE);
+        $db3->where($id);
+        $db3->delete('tbl_duplikat');
     }
     public function hapus_pac($id)
     {
@@ -225,12 +225,12 @@ class M_pihak extends CI_Model
     }
     public function kode_duplikat()
     {
-        $db2 = $this->load->database('database_kedua', TRUE);
-        $db2->select('LEFT(tbl_duplikat.reg_dup,4) as kode_barang', FALSE);
-        $db2->order_by('kode_barang', 'DESC');
-        $db2->limit(1);
+        $db3 = $this->load->database('database_ketiga', TRUE);
+        $db3->select('LEFT(tbl_duplikat.reg_dup,4) as kode_barang', FALSE);
+        $db3->order_by('kode_barang', 'DESC');
+        $db3->limit(1);
 
-        $query = $db2->get('tbl_duplikat');  //cek dulu apakah ada sudah ada kode di tabel.    
+        $query = $db3->get('tbl_duplikat');  //cek dulu apakah ada sudah ada kode di tabel.    
         if ($query->num_rows() <> 0) {
             //cek kode jika telah tersedia    
             $data = $query->row();
@@ -294,11 +294,11 @@ class M_pihak extends CI_Model
     }
     public function get_data_dup()
     {
-        $db2 = $this->load->database('database_kedua', TRUE);
-        $db2->select('*');
-        $db2->from('tbl_duplikat');
+        $db3 = $this->load->database('database_ketiga', TRUE);
+        $db3->select('*');
+        $db3->from('tbl_duplikat');
 
-        $query = $db2->get();
+        $query = $db3->get();
         return $query->result_array();
     }
     
