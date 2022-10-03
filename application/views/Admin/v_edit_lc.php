@@ -49,19 +49,19 @@
                  </div>
                  <!-- batas bawah file upload -->
                  <!-- batas atas file kwitansi-->
-                 <div class="card">
-                     <form id="form-kwitansi" method="POST" action="<?php echo base_url('langitcerah/update_file_kwitansi/') ?>" enctype="multipart/form-data">
-                         <div class="card-header">
+                 <!-- <div class="card"> -->
+                     <!-- <form id="form-kwitansi" method="POST" action="<?php echo base_url('langitcerah/update_file_kwitansi/') ?>" enctype="multipart/form-data"> -->
+                         <!-- <div class="card-header">
                              <h5 class="card-title m-0">--Form Upload Kwitansi--</h5>
                              <?php foreach ($data_lc as $hasil) : ?>
 
                              <?php endforeach;  ?>
                              <div class="card-tools">
                                  <button type="submit" class="btn btn-success btn-sm active" role="button" aria-pressed="true"><i class="fas fa-save"></i> Simpan</button>
-                                 <!-- <a href="<?php echo base_url('langitcerah/data_lc') ?>" class="btn btn-danger btn-sm active" role="button" aria-pressed="true"><i class="fas fa-backward"></i> Kembali</a> -->
+                                 <a href="<?php echo base_url('langitcerah/data_lc') ?>" class="btn btn-danger btn-sm active" role="button" aria-pressed="true"><i class="fas fa-backward"></i> Kembali</a> -->
                              </div>
                          </div>
-                         <div class="card-body">
+                         <!-- <div class="card-body">
                              <div class="row">
                                  <div class="col-sm-12">
                                      <div class="card">
@@ -89,9 +89,9 @@
                                      </div>
                                  </div>
                              </div>
-                         </div>
-                     </form>
-                 </div>
+                         </div> -->
+                     <!-- </form> -->
+                 <!-- </div> -->
                  <!-- batas bawah file kwitansi -->
                  <!-- batas atas -->
                  <div class="card">
