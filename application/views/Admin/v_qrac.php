@@ -40,7 +40,7 @@
                                                     $file_name = str_replace('/','_',$hasil['nomor_perkara']);
                                                     $file_name = str_replace('.','',$file_name);
 
-                                                    $params['data'] = 'http://datacenter.pa-bojonegoro.go.id:8089/keaslian/ac/asli/'.$hasil['kode'];
+                                                    $params['data'] = 'https://datacenter.pa-bojonegoro.go.id:8089/keaslian/akta/asli/'.$hasil['kode'];
                                                     $params['level'] = 'H';
                                                     $params['size'] = 10;
                                                     $params['savename'] = FCPATH.$file_name.'.png';
