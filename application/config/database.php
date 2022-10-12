@@ -116,12 +116,35 @@ $db['database_kedua'] = array(
 	'save_queries' => TRUE
 );
 
-//khusus tbl_duplikat
+// //khusus tbl_duplikat
+// $db['database_ketiga'] = array(
+// 	'dsn'      => '',
+// 	'hostname' => 'localhost',
+// 	'username' => 'root',
+// 	'password' => '',
+// 	'database' => 'db_info_duplikat',
+// 	'dbdriver' => 'mysqli',
+// 	'dbprefix' => '',
+// 	'pconnect' => FALSE,
+// 	'db_debug' => (ENVIRONMENT !== 'production'),
+// 	'cache_on' => FALSE,
+// 	'cachedir' => '',
+// 	'char_set' => 'utf8',
+// 	'dbcollat' => 'utf8_general_ci',
+// 	'swap_pre' => '',
+// 	'encrypt'  => FALSE,
+// 	'compress' => FALSE,
+// 	'stricton' => FALSE,
+// 	'failover' => array(),
+// 	'save_queries' => TRUE
+// );
+
+//khusus tbl_duplikat production
 $db['database_ketiga'] = array(
 	'dsn'      => '',
-	'hostname' => 'localhost',
-	'username' => 'root',
-	'password' => '',
+	'hostname' => '149.129.240.87',
+	'username' => 'admindb',
+	'password' => 'matoh123matoh',
 	'database' => 'db_info_duplikat',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',

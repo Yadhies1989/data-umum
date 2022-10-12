@@ -42,7 +42,7 @@
                                                     $file_name = str_replace('/','_',$hasil['reg_dup']);
                                                     $file_name = str_replace('.','',$file_name);
 
-                                                    $params['data'] = 'https://infoac.pa-bojonegoro.go.id/ac/duplikat/'.$hasil['kode'];
+                                                    $params['data'] = 'http://datacenter.pa-bojonegoro.go.id:8089/keaslian/ac/duplikat/'.$hasil['kode'];
                                                     $params['level'] = 'H';
                                                     $params['size'] = 10;
                                                     $params['savename'] = FCPATH.$file_name.'.png';

@@ -163,6 +163,28 @@
          });
      }
 
+     function show_dataperkara_qr(x) {
+         $.ajax({
+             url: "<?php echo base_url('qrac/get_perkara_qrac'); ?>",
+             type: "GET",
+             dataType: "JSON",
+             data: {
+                 no_perkaraname: x
+                 // harus sama dengan variabel name di views
+             },
+             success: function(x) {
+                 if (x.status == true) {
+                    $('.data-perkara').show()
+                    $('#no_seri_akta_cerai').val(x.data.no_seri_akta_cerai);
+                    $('#nomor_perkara').val(x.data.nomor_perkara);
+                    $('#nomor_akta_cerai').val(x.data.nomor_akta_cerai);
+                    $('#tanggal_putusan').val(x.data.tanggal_putusan);
+                    $('#pihak1_text').val(x.data.pihak1_text);
+                    $('#pihak2_text').val(x.data.pihak2_text);
+                 }
+             }
+         });
+     }
      function hideformfile(z) {
         $("#form-file").hide()
      }

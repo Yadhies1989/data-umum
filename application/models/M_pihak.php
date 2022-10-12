@@ -109,6 +109,12 @@ class M_pihak extends CI_Model
         $db2->where($id);
         $db2->delete('tb_datalc');
     }
+    public function hapus_qrac($id)
+    {
+        $db2 = $this->load->database('database_ketiga', TRUE);
+        $db2->where($id);
+        $db2->delete('tbl_qrac');
+    }
     public function hapus_dup($id)
     {
         $db3 = $this->load->database('database_ketiga', TRUE);
@@ -191,6 +197,17 @@ class M_pihak extends CI_Model
                 WHERE a.`jenis_perkara_text` IN ('Cerai Gugat', 'Cerai Talak') and nomor_perkara = '{$no_perkara}'");
         return $query;
     }
+
+    public function get_for_qrac($no_perkara)
+    {
+        $query  = $this->db->query("SELECT no_seri_akta_cerai, nomor_perkara, nomor_akta_cerai, tanggal_putusan,pihak1_text, pihak2_text 
+            FROM perkara AS p 
+            LEFT JOIN perkara_akta_cerai AS ac ON p.`perkara_id`=ac.`perkara_id`
+            LEFT JOIN perkara_putusan AS pts ON p.`perkara_id`=pts.`perkara_id`
+            WHERE nomor_perkara = '{$no_perkara}'");
+        return $query;
+    }
+
     public function get_nopenggugat()
     {
         $query  = $this->db->query("SELECT a.`nomor_perkara`
@@ -248,6 +265,15 @@ class M_pihak extends CI_Model
         $db2 = $this->load->database('database_kedua', TRUE);
         $db2->select('*');
         $db2->from('tb_datalc');
+
+        $query = $db2->get();
+        return $query->result_array();
+    }
+    public function get_data_qrac()
+    {
+        $db2 = $this->load->database('database_ketiga', TRUE);
+        $db2->select('*');
+        $db2->from('tbl_qrac');
 
         $query = $db2->get();
         return $query->result_array();

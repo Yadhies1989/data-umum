@@ -134,6 +134,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 <li><a href="<?php echo base_url('duplikat/data_dup') ?>" class="dropdown-item">Data Duplikat Akta Cerai</a></li>
                             </ul>
                         </li>
+                        <li class="nav-item dropdown">
+                            <a id="dropdownSubMenu2" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link active dropdown-toggle"><i class="fas fa-book"></i> QR Akta Cerai</a>
+                            <ul aria-labelledby="dropdownSubMenu2" class="dropdown-menu border-0 shadow">
+                                <li><a href="<?php echo base_url('qrac/data_qrac') ?>" class="dropdown-item">Ambil QR Akta Cerai</a></li>
+                            </ul>
+                        </li>
                     </ul>
                 </div>
 
