@@ -24,7 +24,7 @@
 <body class="hold-transition login-page">
   <div class="login-box">
     <div class="login-logo">
-      <a href="#"><b>POSBAKUM</b> | PaBjn</a>
+      <a href="#"><b>ESBATU</b> | PaBjn</a>
       <?php echo $this->session->flashdata('pesan') ?>
       <?php echo $this->session->flashdata('message') ?>
     </div>

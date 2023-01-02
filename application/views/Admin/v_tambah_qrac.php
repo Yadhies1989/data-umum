@@ -35,7 +35,7 @@
                                                  <div class="row col-6">
                                                      <label for="no_perkara"></label>
                                                      <div class="col-sm-6">
-                                                         <select name="tahun" class="form-control" readonly>
+                                                         <select name="tahun" class="form-control" disabled>
                                                              <?php $tahun = date('Y');
                                                                 for ($i = 2021; $i < $tahun + 1; $i++) {
                                                                 ?>
