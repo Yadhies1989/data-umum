@@ -242,8 +242,11 @@ class M_pihak extends CI_Model
     }
     public function kode_duplikat()
     {
+        $tahun = date('Y');
+
         $db3 = $this->load->database('database_ketiga', TRUE);
         $db3->select('LEFT(tbl_duplikat.reg_dup,4) as kode_barang', FALSE);
+        $db3->where('YEAR(tgl_dup)', $tahun);
         $db3->order_by('kode_barang', 'DESC');
         $db3->limit(1);
 
