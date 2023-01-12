@@ -32,6 +32,7 @@
                                     }
                                     ?>
                                     <button type="submit" class="btn btn-success mb-2 ml-auto"><i class="fas fa-eye"></i> Tampilkan Data</button>
+                                    <a href="<?php echo base_url('duplikat/excelLaporan?tahun=' . $tahun) ?>" class="btn btn-warning mb-2 ml-2"><i class="fas fa-download"></i> Download Excel</a>
                                     <a href="<?php echo base_url('duplikat/data_dup/add') ?>" class="btn btn-primary mb-2 ml-2 "><i class="fas fa-plus"></i> Tambah Data</a>
                                     
                                 </form>

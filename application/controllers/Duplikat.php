@@ -534,6 +534,80 @@ class Duplikat extends CI_Controller
         header("Content-length: " . strlen($document));
         echo $document;
     }
+
+    public function excelLaporan()
+    {
+        $data['title']          = 'Laporan Duplikat Akta Cerai Pengadilan Agama Bojonegoro';
+        $data['tanggal']        = date('Y-m-d');
+        $data['user']      = $this->db->get_where('sys_users', ['username' => $this->session->userdata('username')])->row_array();
+
+        if ((isset($_GET['tahun']) && $_GET['tahun'] != '')) {
+            $tahun      = $_GET['tahun'];
+        } else {
+            $tahun = date('Y');
+        }
+
+        $db3 = $this->load->database('database_ketiga', TRUE);
+        $data['duplikat'] = $db3->query("SELECT * FROM tbl_duplikat WHERE YEAR(tgl_dup) = '$tahun'")->result_array();
+        
+        include_once APPPATH.'/third_party/xlsxwriter.class.php';
+        ini_set('display_errors', 0);
+        ini_set('log_errors', 1);
+        error_reporting(E_ALL & ~E_NOTICE);
+
+        $filename = "report-tahun ".$tahun.".xlsx";
+        header('Content-disposition: attachment; filename="'.XLSXWriter::sanitize_filename($filename).'"');
+        header("Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+        header('Content-Transfer-Encoding: binary');
+        header('Cache-Control: must-revalidate');
+        header('Pragma: public');
+
+        $styles = array('widths'=>[3,20,30,40], 'font'=>'Arial','font-size'=>10,'font-style'=>'bold', 'fill'=>'#eee', 'halign'=>'center', 'border'=>'left,right,top,bottom');
+        $styles2 = array( ['font'=>'Arial','font-size'=>10,'font-style'=>'bold', 'fill'=>'#eee', 'halign'=>'left', 'border'=>'left,right,top,bottom','fill'=>'#fff'],);
+
+        $writer = new XLSXWriter();
+        $writer->setAuthor('Manusia');
+        
+        $header_duplikat = array(
+            'No'=>'integer',
+            'No Reg Duplikat'=>'string',
+            'Nama Pemohon'=>'string',
+            'Tgl Permohonan'=>'string',
+            'No AC'=>'string',
+            'No Perkara'=>'string',
+            'Kondisi AC'=>'string',
+            'Mengetahui KUA'=>'string',
+            'Alasan'=>'string',
+        );
+        $writer->writeSheetHeader('duplikat', $header_duplikat, $styles);
+        $no = 1;
+        foreach($data['duplikat'] as $row){
+            $reg_dup[] = $row['reg_dup'];
+            $nama_pemohon[] = $row['nama_pemohon'];
+            $tgl_dup[] = $row['tgl_dup'];
+            $no_ac[] = $row['no_ac'];
+            $no_perkara[] = $row['no_perkara'];
+            $kondisi_ac[] = $row['kondisi_ac'];
+            $kua[] = $row['kua'];
+            $alasan_dup[] = $row['alasan_dup'];
+            
+
+            $writer->writeSheetRow('duplikat', [
+                $no, $row['reg_dup'], 
+                $row['nama_pemohon'], 
+                $row['tgl_dup'], 
+                $row['no_ac'], 
+                $row['no_perkara'], 
+                $row['kondisi_ac'], 
+                $row['kua'], 
+                $row['alasan_dup']
+            ], $styles2);
+            $no++;
+        }
+
+        $writer->writeToStdOut();
+    }
+
     public function hapus_data($id)
     {
         //load db kedua
