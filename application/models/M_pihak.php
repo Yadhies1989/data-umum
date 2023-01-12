@@ -321,13 +321,17 @@ class M_pihak extends CI_Model
         $db2->where($id);
         $db2->delete('tb_nafkah');
     }
-    public function get_data_dup()
+    public function get_data_dup($data)
     {
         $db3 = $this->load->database('database_ketiga', TRUE);
-        $db3->select('*');
-        $db3->from('tbl_duplikat');
+        $query = $db3->query("SELECT * FROM tbl_duplikat WHERE YEAR(tgl_dup) = '$data'");
+        return $query->result_array();
+    }
 
-        $query = $db3->get();
+    public function getTahunDuplikat()
+    {
+        $db3 = $this->load->database('database_ketiga', TRUE);
+        $query = $db3->query("SELECT YEAR(tgl_dup) AS tahun_hasil FROM tbl_duplikat GROUP BY tahun_hasil");
         return $query->result_array();
     }
     

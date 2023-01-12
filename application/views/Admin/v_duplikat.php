@@ -9,12 +9,37 @@
                  <!-- batas atas -->
                  <div class="row">
                      <div class="col-12">
+                     <div class="card card-info">
+                            <div class="card-header">
+                                <h3 class="card-title"> Filter Duplikat Akta Cerai</h3>
+                            </div>
+                            <div class="card-body">
+                                <form class="form-inline">
+                                    <div class="form-group mb-2">
+                                        <label for="tahun" class="">Tahun : </label>
+                                        <select name="tahun" class="form-control ml-3 mr-3">
+                                            <option value="">-- Pilih Tahun --</option>
+                                            <?php foreach ($tahun as $hasil) { ?>
+                                                <option value="<?php echo $hasil['tahun_hasil']; ?>"><?php echo $hasil['tahun_hasil']; ?> </option>
+                                            <?php } ?>
+                                        </select>
+                                    </div>
+                                    <?php
+                                    if ((isset($_GET['tahun']) && $_GET['tahun'] != '')) {
+                                        $tahun      = $_GET['tahun'];
+                                    } else {
+                                        $tahun   = date('Y');
+                                    }
+                                    ?>
+                                    <button type="submit" class="btn btn-success mb-2 ml-auto"><i class="fas fa-eye"></i> Tampilkan Data</button>
+                                    <a href="<?php echo base_url('duplikat/data_dup/add') ?>" class="btn btn-primary mb-2 ml-2 "><i class="fas fa-plus"></i> Tambah Data</a>
+                                    
+                                </form>
+                            </div>
+                        </div>
                          <div class="card">
                              <div class="card-header">
-                                 <h3 class="card-title"> Tabel Pemohon Duplikat Akta Cerai</h3>
-                                 <div class="d-flex justify-content-end">
-                                     <a href="<?php echo base_url('duplikat/data_dup/add') ?>" class="btn btn-primary btn-sm "><i class="fas fa-plus"></i> Tambah Data</a>
-                                 </div>
+                                 <h3 class="card-title"> Tabel Pemohon Duplikat Akta Cerai Tahun <b><?php echo $tahun; ?></b></h3>
                              </div>
                              <div class="card-body">
                                  <table class="table table-bordered table-sm" id="example1">

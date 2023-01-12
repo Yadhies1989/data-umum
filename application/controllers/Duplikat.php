@@ -18,13 +18,18 @@ class Duplikat extends CI_Controller
 
     public function data_dup()
     {
-        // $db2 = $this->load->database('database_kedua', TRUE);
+        if ((isset($_GET['tahun']) && $_GET['tahun'] != '')) {
+            $tahun      = $_GET['tahun'];
+        } else {
+            $tahun = date('Y');
+        }
+
         $db3 = $this->load->database('database_ketiga', TRUE);
         $data['user']      = $this->db->get_where('sys_users', ['username' => $this->session->userdata('username')])->row_array();
         $data['title']     = "Duplikat Akta Cerai";
         $data['kode_duplikat']      = $this->M_pihak->kode_duplikat();
-        $data['data_dup']   = $this->M_pihak->get_data_dup();
-
+        $data['data_dup']   = $this->M_pihak->get_data_dup($tahun);
+        $data['tahun']   = $this->M_pihak->getTahunDuplikat();
 
         $mau_ke    = $this->uri->segment(3);
         $idu       = $this->uri->segment(4);
