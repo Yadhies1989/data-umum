@@ -95,7 +95,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow">
                                 <li><a href="<?php echo base_url('audit/verstek') ?>" class="dropdown-item">Verstek Ya</a></li>
                                 <li><a href="<?php echo base_url('audit/verstek_tidak') ?>" class="dropdown-item">Verstek Tidak</a></li>
-                                <li><a href="<?php echo 'http://192.168.1.4/new_dev/arsip.php?tahun=' . date("Y") ?>" class="dropdown-item">Monitoring Alih Media</a></li>
+                                <li><a href="<?php echo 'http://192.168.1.7/new_dev/arsip.php?tahun=' . date("Y") ?>" class="dropdown-item">Monitoring Alih Media</a></li>
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
