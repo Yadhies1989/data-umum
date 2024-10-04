@@ -33,11 +33,11 @@
                                                  </div>
                                                  <div class="form-group col-md-6">
                                                      <label for="tgl_ac">Tanggal Akta Cerai</label>
-                                                     <input type="date" name="tgl_ac" class="form-control form-control-sm" required>
+                                                     <input type="date" name="tgl_ac" class="form-control form-control-sm" >
                                                  </div>
                                                  <div class="form-group col-md-6">
                                                      <label for="tgl_kirim_ac">Tanggal Kirim Akta Cerai</label>
-                                                     <input type="date" name="tgl_kirim_ac" class="form-control form-control-sm" required>
+                                                     <input type="date" name="tgl_kirim_ac" class="form-control form-control-sm" >
                                                  </div>
                                                  <div class="form-group col-md-6">
                                                      <label for="no_perkara">Nomor Perkara</label>
