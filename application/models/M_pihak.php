@@ -214,8 +214,7 @@ class M_pihak extends CI_Model
                 FROM perkara AS a
                 LEFT JOIN perkara_putusan AS b
                 ON a.`perkara_id` = b.`perkara_id`
-                WHERE a.`jenis_perkara_text` IN ('Cerai Gugat', 'Cerai Talak') 
-                AND YEAR(a.`tanggal_pendaftaran`) = 2024
+                WHERE YEAR(a.`tanggal_pendaftaran`) = YEAR(CURDATE())
                 ORDER BY a.`perkara_id` DESC");
         return $query;
     }
